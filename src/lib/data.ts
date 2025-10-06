@@ -1,7 +1,7 @@
 import { Case, Notification, SupportService, Grievance } from '@/lib/types';
 import { subDays, format } from 'date-fns';
 
-const now = new Date();
+const now = new Date('2024-07-26T12:00:00.000Z'); // Using a fixed date to prevent hydration errors
 
 export const mockCases: Case[] = [
   {

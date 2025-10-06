@@ -1,6 +1,6 @@
 import { visualizeCaseData } from '@/ai/flows/visualize-case-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { InsightsCharts } from '@/app/dashboard/insights/components/insights-charts';
+import { InsightsCharts } from '@/app/dashboard/admin/insights/components/insights-charts';
 import { Lightbulb } from 'lucide-react';
 
 const mockCaseData = JSON.stringify([
