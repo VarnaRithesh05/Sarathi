@@ -16,7 +16,6 @@ import {
   Loader,
 } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Separator } from '@/components/ui/separator'
 
 const statusIcons = {
   Pending: <Loader className="h-4 w-4 text-yellow-500" />,
@@ -34,7 +33,7 @@ export default function DashboardOverviewPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
-          Welcome Back
+          Welcome Back, Victim User
         </h1>
         <p className="text-muted-foreground">
           Here is a summary of your activities and cases.
@@ -44,7 +43,7 @@ export default function DashboardOverviewPage() {
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Cases</CardTitle>
+            <CardTitle className="text-sm font-medium">My Active Cases</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -85,7 +84,7 @@ export default function DashboardOverviewPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Recent Case Updates</CardTitle>
+            <CardTitle>My Recent Case Updates</CardTitle>
             <CardDescription>
               Latest status changes on your registered cases.
             </CardDescription>
@@ -122,7 +121,7 @@ export default function DashboardOverviewPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Notifications</CardTitle>
+            <CardTitle>My Notifications</CardTitle>
             <CardDescription>
               You have {unreadNotifications} unread messages.
             </CardDescription>

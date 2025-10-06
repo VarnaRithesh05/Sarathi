@@ -11,23 +11,17 @@ import {
 import {
   LayoutDashboard,
   FileText,
-  FilePlus,
-  LifeBuoy,
-  Handshake,
-  MessageSquareWarning,
-  Shield,
+  BarChart3,
+  ShieldCheck,
 } from 'lucide-react'
 
 const links = [
-  { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { href: '/dashboard/cases', label: 'My Cases', icon: FileText },
-  { href: '/dashboard/register-case', label: 'Register New Case', icon: FilePlus },
-  { href: '/dashboard/grievance', label: 'My Grievances', icon: MessageSquareWarning },
-  { href: '/dashboard/support', label: 'Support Network', icon: LifeBuoy },
-  { href: '/dashboard/schemes', label: 'Welfare Schemes', icon: Handshake },
+  { href: '/dashboard/admin', label: 'Admin Overview', icon: LayoutDashboard },
+  { href: '/dashboard/admin/cases', label: 'All Cases', icon: FileText },
+  { href: '/dashboard/admin/insights', label: 'Policy Insights', icon: BarChart3 },
 ]
 
-export function MainNav() {
+export function AdminNav() {
   const pathname = usePathname()
 
   return (
@@ -35,13 +29,13 @@ export function MainNav() {
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Shield className="h-6 w-6" />
+                <ShieldCheck className="h-6 w-6" />
             </div>
             <div>
                 <h2 className="font-headline text-lg font-semibold text-sidebar-foreground">
-                    Unity
+                    Unity Admin
                 </h2>
-                <p className="text-xs text-sidebar-foreground/70">Victim Support Platform</p>
+                <p className="text-xs text-sidebar-foreground/70">Official's Portal</p>
             </div>
         </div>
       </SidebarHeader>
@@ -51,7 +45,7 @@ export function MainNav() {
           <SidebarMenuItem key={link.href}>
             <SidebarMenuButton
               asChild
-              isActive={pathname === link.href || (link.href !== '/dashboard' && pathname.startsWith(link.href))}
+              isActive={pathname === link.href || (link.href !== '/dashboard/admin' && pathname.startsWith(link.href))}
               tooltip={link.label}
             >
               <Link href={link.href}>
