@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar",
+      "description": "User avatar placeholder",
+      "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc1OTY4MDQzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "card-image-1",
+      "description": "Abstract decorative image for a card",
+      "imageUrl": "https://images.unsplash.com/photo-1708379583032-8dd13b3779a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMHRleHR1cmV8ZW58MHx8fHwxNzU5Njc3NTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract texture"
+    },
+    {
+      "id": "card-image-2",
+      "description": "Abstract decorative image for a card",
+      "imageUrl": "https://images.unsplash.com/photo-1453230806017-56d81464b6c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b2ZmaWNlJTIwYnVpbGRpbmd8ZW58MHx8fHwxNzU5NzYwNzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "office building"
+    },
+    {
+      "id": "card-image-3",
+      "description": "Abstract decorative image for a card",
+      "imageUrl": "https://images.unsplash.com/photo-1651372381086-9861c9c81db5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoZWxwaW5nJTIwaGFuZHN8ZW58MHx8fHwxNzU5NzMyMjU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "helping hands"
+    }
+  ]
 }
