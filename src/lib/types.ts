@@ -34,3 +34,13 @@ export type Grievance = {
   status: 'Open' | 'In Progress' | 'Resolved';
   date: string;
 };
+
+export type InterCasteMarriage = {
+  id: string;
+  applicantName1: string;
+  applicantName2: string;
+  marriageCertificate: string;
+  status: 'Submitted' | 'Verified' | 'Approved' | 'Disbursed';
+  date: string;
+  amount: number;
+};

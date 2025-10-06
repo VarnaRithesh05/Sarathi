@@ -16,12 +16,14 @@ import {
   Handshake,
   MessageSquareWarning,
   Shield,
+  HeartHandshake,
 } from 'lucide-react'
 
 const links = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
   { href: '/dashboard/cases', label: 'My Cases', icon: FileText },
   { href: '/dashboard/register-case', label: 'Register New Case', icon: FilePlus },
+  { href: '/dashboard/inter-caste-marriage', label: 'Inter-Caste Marriage', icon: HeartHandshake },
   { href: '/dashboard/grievance', label: 'My Grievances', icon: MessageSquareWarning },
   { href: '/dashboard/support', label: 'Support Network', icon: LifeBuoy },
   { href: '/dashboard/schemes', label: 'Welfare Schemes', icon: Handshake },
@@ -41,7 +43,7 @@ export function MainNav() {
                 <h2 className="font-headline text-lg font-semibold text-sidebar-foreground">
                     Unity
                 </h2>
-                <p className="text-xs text-sidebar-foreground/70">Victim Support Platform</p>
+                <p className="text-xs text-sidebar-foreground/70">Beneficiary Platform</p>
             </div>
         </div>
       </SidebarHeader>
