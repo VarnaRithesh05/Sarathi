@@ -20,12 +20,13 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         </radialGradient>
       </defs>
 
-      <path d="M30 90 C 35 75, 42 65, 46 60 C 40 58, 36 53, 35 47 C 38 52, 42 55, 47 57 C 45 70, 40 80, 30 90 Z" fill="url(#saarathi-orange-gradient)" />
-      <path d="M70 90 C 65 75, 58 65, 54 60 C 60 58, 64 53, 65 47 C 62 52, 58 55, 53 57 C 55 70, 60 80, 70 90 Z" fill="url(#saarathi-orange-gradient)" />
+      {/* Bottom Hands - Orange/Yellow Gradient */}
+      <path d="M20 75 C 30 60, 40 55, 50 55 C 60 55, 70 60, 80 75 L 70 85 C 65 75, 55 70, 50 70 C 45 70, 35 75, 30 85 Z" fill="url(#saarathi-orange-gradient)" />
+      
+      {/* Top Hands - Blue Gradient */}
+      <path d="M20 25 C 30 40, 40 45, 50 45 C 60 45, 70 40, 80 25 L 70 15 C 65 25, 55 30, 50 30 C 45 30, 35 25, 30 15 Z" fill="url(#saarathi-blue-gradient)" />
 
-      <path d="M30 10 C 35 25, 42 35, 46 40 C 40 42, 36 47, 35 53 C 38 48, 42 45, 47 43 C 45 30, 40 20, 30 10 Z" fill="url(#saarathi-blue-gradient)" />
-      <path d="M70 10 C 65 25, 58 35, 54 40 C 60 42, 64 47, 65 53 C 62 48, 58 45, 53 43 C 55 30, 60 20, 70 10 Z" fill="url(#saarathi-blue-gradient)" />
-
+      {/* Central Orb */}
       <circle cx="50" cy="50" r="7" fill="url(#saarathi-orb-gradient)" />
     </svg> 
 );
