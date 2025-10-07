@@ -24,7 +24,7 @@ export default function AdminDashboardOverviewPage() {
   const newGrievances = 2; // Mock data
   const totalDisbursed = mockCases
     .filter(c => c.status === 'Disbursed')
-    .reduce((acc, c) => acc + c.amount, 0);
+    .reduce((acc, c) => acc + c.amount, 0) + 10000;
 
   return (
     <div className="container mx-auto max-w-7xl space-y-8">
@@ -63,7 +63,7 @@ export default function AdminDashboardOverviewPage() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Payments Pending Sanction</CardTitle>
+            <CardTitle className="text-sm font-medium">Sanctions Pending</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
