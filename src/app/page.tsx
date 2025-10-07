@@ -38,7 +38,7 @@ export default function Home() {
                 </CardHeader>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href="/dashboard">
+                    <Link href="/login">
                       Go to Victim Portal
                     </Link>
                   </Button>
@@ -56,7 +56,7 @@ export default function Home() {
                 </CardHeader>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href="/dashboard/inter-caste-marriage">
+                    <Link href="/login">
                       Go to Incentive Portal
                     </Link>
                   </Button>
@@ -76,7 +76,7 @@ export default function Home() {
                 </CardDescription>
               </div>
               <Button asChild className="ml-auto" variant="outline">
-                <Link href="/dashboard/admin">
+                <Link href="/login">
                   Login to Admin Dashboard
                 </Link>
               </Button>
