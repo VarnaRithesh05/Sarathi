@@ -140,7 +140,11 @@ export default function InterCasteMarriagePage() {
                                 <p className="text-center text-sm text-muted-foreground mb-4">
                                     Verify your documents quickly and securely with DigiLocker.
                                 </p>
-                                <Button type="button" variant="outline">
+                                <Button 
+                                    type="button" 
+                                    variant="outline"
+                                    onClick={() => alert('This feature is for demonstration and will be fully integrated soon.')}
+                                >
                                     <ShieldCheck className="mr-2" /> Connect with DigiLocker
                                 </Button>
                             </div>
