@@ -23,7 +23,7 @@ const UserProfileSchema = z.object({
   occupation: z.string(),
 });
 
-export const CheckSchemeEligibilityInputSchema = z.object({
+const CheckSchemeEligibilityInputSchema = z.object({
   userProfile: UserProfileSchema.describe("The user's profile data."),
   schemes: z.array(SchemeSchema).describe('A list of available welfare schemes.'),
 });
@@ -34,7 +34,7 @@ const EligibleSchemeSchema = z.object({
   reason: z.string().describe('A brief explanation for why the user is eligible.'),
 });
 
-export const CheckSchemeEligibilityOutputSchema = z.object({
+const CheckSchemeEligibilityOutputSchema = z.object({
   eligibleSchemes: z.array(EligibleSchemeSchema).describe('A list of schemes the user is likely eligible for.'),
 });
 export type CheckSchemeEligibilityOutput = z.infer<typeof CheckSchemeEligibilityOutputSchema>;
