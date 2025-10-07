@@ -7,9 +7,9 @@ import {
   SidebarInset,
 } from '@/components/ui/sidebar'
 import Chatbot from '@/components/app/chatbot'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { User, Bell, UserNav } from 'lucide-react'
+import { Bell } from 'lucide-react'
+import { UserNav } from '@/components/app/user-nav'
 
 
 export const metadata: Metadata = {
