@@ -6,6 +6,7 @@ import {
   SidebarContent,
   SidebarInset,
   SidebarTrigger,
+  SidebarRail,
 } from '@/components/ui/sidebar'
 import Chatbot from '@/components/app/chatbot'
 import { Button } from '@/components/ui/button'
@@ -27,10 +28,11 @@ export default function AdminDashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar collapsible="icon">
         <SidebarContent>
           <AdminNav />
         </SidebarContent>
+        <SidebarRail />
       </Sidebar>
       <SidebarInset>
         <div className="relative flex min-h-dvh flex-col">

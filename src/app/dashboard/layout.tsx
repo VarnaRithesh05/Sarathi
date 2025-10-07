@@ -8,6 +8,7 @@ import {
   SidebarProvider,
   SidebarContent,
   SidebarInset,
+  SidebarRail,
 } from '@/components/ui/sidebar'
 import Chatbot from '@/components/app/chatbot'
 import Link from 'next/link'
@@ -31,10 +32,11 @@ export default function DashboardLayout({
   // Otherwise, render the standard user dashboard layout.
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar collapsible="icon">
         <SidebarContent>
           <MainNav />
         </SidebarContent>
+        <SidebarRail />
       </Sidebar>
       <SidebarInset>
         <div className="relative flex min-h-dvh flex-col">
