@@ -6,6 +6,7 @@ import SaarathiLogo from '@/components/app/saarathi-logo';
 
 
 export default function Home() {
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="flex flex-col min-h-dvh bg-muted/20">
@@ -84,7 +85,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="p-4 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Saarathi Platform. All Rights Reserved.
+        © {currentYear} Saarathi Platform. All Rights Reserved.
       </footer>
     </div>
   );
