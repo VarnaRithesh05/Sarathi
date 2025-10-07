@@ -1,7 +1,8 @@
 import { visualizeCaseData } from '@/ai/flows/visualize-case-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { InsightsCharts } from '@/app/dashboard/admin/insights/components/insights-charts';
-import { Lightbulb } from 'lucide-react';
+import { Lightbulb, TrendingUp, Target, Clock } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const mockCaseData = JSON.stringify([
   { "id": "C001", "district": "North District", "disbursement_delay_days": 5, "latitude": 28.70, "longitude": 77.10, "weight": 15 },
@@ -16,6 +17,12 @@ export default async function InsightsPage() {
   let visualization: string | undefined;
   let chartData: any[] = [];
   let error: string | null = null;
+  let analysisParts = {
+    concentration: "Analysis unavailable.",
+    delays: "Analysis unavailable.",
+    trends: "Analysis unavailable."
+  };
+
 
   try {
     const result = await visualizeCaseData({ caseData: mockCaseData });
@@ -29,6 +36,20 @@ export default async function InsightsPage() {
     visualization = "AI analysis is currently unavailable. Showing mock analysis: The data indicates a high concentration of cases in the East District, which also experiences the longest disbursement delays. Policy intervention may be required in this area to improve efficiency. North and West districts show moderate case loads with better processing times."
   }
   
+    // Simple parsing logic for demonstration
+    if (visualization) {
+        const concentrationMatch = visualization.match(/concentration of cases in the (.*?)\./);
+        const delaysMatch = visualization.match(/experiences the longest disbursement delays\./);
+        const trendsMatch = visualization.match(/Policy intervention may be required(.*?)\./);
+        
+        analysisParts = {
+            concentration: concentrationMatch ? `High concentration in ${concentrationMatch[1]}.` : "No specific concentration detected.",
+            delays: delaysMatch ? 'Significant disbursement delays identified.' : "Disbursement times are within acceptable limits.",
+            trends: trendsMatch ? `Policy intervention may be required ${trendsMatch[1]}.` : "Current trends appear stable."
+        };
+    }
+
+
   return (
     <div className="space-y-6">
       <div>
@@ -52,20 +73,45 @@ export default async function InsightsPage() {
       )}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-1">
-          <CardHeader className="flex flex-row items-start gap-4 space-y-0">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                <Lightbulb className="h-6 w-6 text-primary" />
-            </div>
-            <div className="space-y-1">
-                <CardTitle>AI-Generated Analysis</CardTitle>
-                <CardDescription>Key trends and takeaways.</CardDescription>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">{visualization}</p>
-          </CardContent>
-        </Card>
+        <div className="lg:col-span-1 space-y-6">
+             <Card>
+                <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Lightbulb className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                        <CardTitle>AI-Generated Summary</CardTitle>
+                        <CardDescription>Key takeaways from the data.</CardDescription>
+                    </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="flex items-start gap-4">
+                        <Target className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h4 className="font-semibold">Concentration</h4>
+                            <p className="text-sm text-muted-foreground">{analysisParts.concentration}</p>
+                        </div>
+                    </div>
+                    <Separator />
+                     <div className="flex items-start gap-4">
+                        <Clock className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h4 className="font-semibold">Disbursement Delays</h4>
+                            <p className="text-sm text-muted-foreground">{analysisParts.delays}</p>
+                        </div>
+                    </div>
+                     <Separator />
+                     <div className="flex items-start gap-4">
+                        <TrendingUp className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h4 className="font-semibold">Recommendations</h4>
+                            <p className="text-sm text-muted-foreground">{analysisParts.trends}</p>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+
 
         <Card className="lg:col-span-2">
           <CardHeader>
