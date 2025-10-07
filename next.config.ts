@@ -30,11 +30,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    watchOptions: {
-      ignored: ['**/src/ai/**'],
-    },
-  },
 };
 
 export default nextConfig;
