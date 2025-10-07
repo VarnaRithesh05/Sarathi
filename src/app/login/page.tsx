@@ -13,12 +13,21 @@ import { Label } from "@/components/ui/label"
 import SaarathiLogo from "@/components/app/saarathi-logo"
 import Link from "next/link"
 import { useSearchParams, useRouter } from "next/navigation"
-import { Suspense, FormEvent, useState } from 'react'
+import { Suspense, FormEvent, useState, ChangeEvent, KeyboardEvent } from 'react'
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+
 
 function UserLoginCard() {
   const router = useRouter()
   const [step, setStep] = useState<'enter-mobile' | 'enter-otp'>('enter-mobile')
   const [mobileNumber, setMobileNumber] = useState('')
+  const [otp, setOtp] = useState('')
+
 
   const handleSendOtp = (e: FormEvent) => {
     e.preventDefault()
@@ -34,7 +43,9 @@ function UserLoginCard() {
     e.preventDefault()
     // In a real app, you would verify the OTP here.
     // For now, any 6-digit OTP is considered valid.
-    router.push('/dashboard')
+    if(otp.length === 6) {
+        router.push('/dashboard')
+    }
   }
 
   return (
@@ -71,20 +82,25 @@ function UserLoginCard() {
             </div>
           </form>
         ) : (
-          <form onSubmit={handleVerifyOtp} className="space-y-4">
-            <div className="grid gap-2">
-              <Label htmlFor="otp">One-Time Password</Label>
-              <Input
-                id="otp"
-                type="text"
-                inputMode="numeric"
-                placeholder="Enter 6-digit OTP"
-                required
-                minLength={6}
+          <form onSubmit={handleVerifyOtp} className="space-y-6">
+             <div className="grid gap-2 justify-center">
+              <Label htmlFor="otp" className="text-center">One-Time Password</Label>
+               <InputOTP
                 maxLength={6}
-              />
+                value={otp}
+                onChange={(value) => setOtp(value)}
+               >
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled={otp.length < 6}>
               Verify OTP
             </Button>
             <div className="mt-4 text-center text-sm">
