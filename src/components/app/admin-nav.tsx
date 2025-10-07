@@ -33,7 +33,7 @@ export function AdminNav() {
             </div>
             <div>
                 <h2 className="font-headline text-lg font-semibold text-sidebar-foreground">
-                    Unity Admin
+                    Sarathi Admin
                 </h2>
                 <p className="text-xs text-sidebar-foreground/70">Official's Portal</p>
             </div>

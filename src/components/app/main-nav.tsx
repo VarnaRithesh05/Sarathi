@@ -15,7 +15,7 @@ import {
   LifeBuoy,
   Handshake,
   MessageSquareWarning,
-  Shield,
+  Navigation,
   HeartHandshake,
 } from 'lucide-react'
 
@@ -37,11 +37,11 @@ export function MainNav() {
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Shield className="h-6 w-6" />
+                <Navigation className="h-6 w-6" />
             </div>
             <div>
                 <h2 className="font-headline text-lg font-semibold text-sidebar-foreground">
-                    Unity
+                    Sarathi
                 </h2>
                 <p className="text-xs text-sidebar-foreground/70">Beneficiary Platform</p>
             </div>

@@ -4,24 +4,26 @@ import { ShieldCheck, User, HeartHandshake, BookUser } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Navigation } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'card-image-3');
 
   return (
     <div className="flex flex-col min-h-dvh bg-muted/20">
-      <header className="p-4 sm:p-6">
+      <header className="p-4 sm:p-6 flex items-center gap-2">
+        <Navigation className="h-7 w-7 text-primary" />
         <h1 className="text-2xl font-headline font-semibold text-primary">
-          Unity
+          Sarathi
         </h1>
       </header>
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="container max-w-5xl">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="md:col-span-1">
-              <h2 className="font-headline text-4xl font-bold">Welcome to Unity</h2>
+              <h2 className="font-headline text-4xl font-bold">Welcome to Sarathi</h2>
               <p className="mt-2 text-muted-foreground">
-                A unified platform for social justice and empowerment. Please select your portal to begin.
+                Your guide to justice and rights. Please select your portal to begin.
               </p>
             </div>
             <div className="grid gap-6 md:col-span-2 sm:grid-cols-2">
@@ -84,7 +86,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="p-4 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Unity Platform. All Rights Reserved.
+        © {new Date().getFullYear()} Sarathi Platform. All Rights Reserved.
       </footer>
     </div>
   );

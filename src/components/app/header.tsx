@@ -1,7 +1,7 @@
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
 import { UserNav } from '@/components/app/user-nav'
-import { Bell } from 'lucide-react'
+import { Bell, Navigation } from 'lucide-react'
 import Link from 'next/link'
 
 export function Header() {
@@ -9,9 +9,10 @@ export function Header() {
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
       <SidebarTrigger className="md:hidden" />
       <div className="flex-1">
-        <Link href="/dashboard">
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <Navigation className="hidden h-6 w-6 text-primary md:block" />
           <h1 className="hidden text-2xl font-headline font-semibold text-primary md:block">
-            Unity
+            Sarathi
           </h1>
         </Link>
       </div>

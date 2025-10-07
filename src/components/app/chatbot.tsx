@@ -27,7 +27,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello! I am the Unity support bot. How can I assist you today? You can ask me questions in your regional language.",
+      text: "Hello! I am the Sarathi support bot. How can I assist you today? You can ask me questions in your regional language.",
       sender: 'bot',
     },
   ])
