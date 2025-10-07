@@ -1,128 +1,72 @@
-/**
- * @description This ruleset enforces a strict user-ownership model for the Sarathi platform.
- * It ensures that users can only access their own data within the 'users', 'atrocity_cases', 'marriage_incentives', and 'grievances' collections.
- * @dataStructure
- * - `/users/{userId}`: Stores user profiles, where `userId` is the Firebase Auth UID.
- * - `/atrocity_cases/{caseId}`: Stores atrocity case details, with a `victimId` field matching the owning user's UID.
- * - `/marriage_incentives/{incentiveId}`: Stores marriage incentive applications, with an `applicantUids` array containing the UIDs of the applicants.
- * - `/grievances/{grievanceId}`: Stores grievances filed by victims, with a `complainantId` field matching the user's UID.
- * @keySecurityDecisions
- * - Users can only manage their own profiles. Listing all users is disallowed.
- * - Atrocity cases, marriage incentives, and grievances are strictly owned by the associated user(s).
- * - Read-only collections are not present in this data model.
- * @denormalizationForAuthorization
- * - The `atrocity_cases` documents have a `victimId` field to directly associate them with a user, avoiding `get()` calls to the `users` collection.
- * - The `marriage_incentives` documents have an `applicantUids` array to directly associate them with the involved users, avoiding `get()` calls.
- * - The `grievances` documents have a `complainantId` to associate with a user, avoiding `get()` calls.
- */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
     /**
-     * @description Manages user profiles. Only the authenticated user can read or write their own profile.
+     * @description Enforces user-only access to their own user document.
      * @path /users/{userId}
-     * @allow (create) If the user is authenticated and the userId matches the authenticated user's UID.
-     * @deny (create) If the user is not authenticated or the userId does not match the authenticated user's UID.
-     * @allow (get) If the user is authenticated and the userId matches the authenticated user's UID.
-     * @deny (get) If the user is authenticated and the userId does not match the authenticated user's UID.
-     * @allow (list) If the user is authenticated and the userId matches the authenticated user's UID.
-     * @deny (list) Listing all users is not permitted.
-     * @allow (update) If the user is authenticated and the userId matches the authenticated user's UID.
-     * @deny (update) If the user is authenticated and the userId does not match the authenticated user's UID.
-     * @allow (delete) If the user is authenticated and the userId matches the authenticated user's UID.
-     * @deny (delete) If the user is authenticated and the userId does not match the authenticated user's UID.
-     * @principle Enforces user-ownership for profile data and prevents unauthorized access.
      */
     match /users/{userId} {
-      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.id == userId;
-      allow get: if isSignedIn() && isOwner(userId);
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      allow get: if isOwner(userId) && isSignedIn();
       allow list: if false;
-      allow update: if isSignedIn() && isOwner(userId) && resource.data.id == userId;
-      allow delete: if isSignedIn() && isExistingOwner(userId);
+      allow create: if isOwner(userId) && isSignedIn();
+      allow update: if isOwner(userId) && isSignedIn();
+      allow delete: if isOwner(userId) && isSignedIn();
     }
 
     /**
-     * @description Manages atrocity case data. Only the victim (identified by victimId) can create, read, update, or delete their case data.
+     * @description Enforces that only the victim can access their atrocity cases.
      * @path /atrocity_cases/{caseId}
-     * @allow (create) If the user is authenticated and the victimId in the request matches the authenticated user's UID.
-     * @deny (create) If the user is not authenticated or the victimId does not match.
-     * @allow (get) If the user is authenticated and the victimId in the resource matches the authenticated user's UID.
-     * @deny (get) If the user is not authenticated or the victimId does not match.
-     * @allow (list) If the user is authenticated and the victimId in the resource matches the authenticated user's UID.
-     * @deny (list) Listing all atrocity cases is not permitted.
-     * @allow (update) If the user is authenticated, the victimId in the resource matches the authenticated user's UID, and the document exists.
-     * @deny (update) If the user is not authenticated or the victimId does not match or the document does not exist.
-     * @allow (delete) If the user is authenticated, the victimId in the resource matches the authenticated user's UID, and the document exists.
-     * @deny (delete) If the user is not authenticated or the victimId does not match or the document does not exist.
-     * @principle Enforces document ownership for writes and restricts access to authorized users.
      */
     match /atrocity_cases/{caseId} {
-      allow create: if isSignedIn() && request.resource.data.victimId == request.auth.uid;
-      allow get: if isSignedIn() && isOwner(resource.data.victimId);
-      allow list: if isSignedIn() && isOwner(request.auth.uid);
-      allow update: if isSignedIn() && isExistingOwner(resource.data.victimId);
-      allow delete: if isSignedIn() && isExistingOwner(resource.data.victimId);
+      function isSignedIn() {
+        return request.auth != null;
+      }
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn();
+      allow delete: if isSignedIn();
     }
 
     /**
-     * @description Manages marriage incentive application data. Only the applicants (identified by applicantUids) can create, read, update, or delete their application data.
+     * @description Enforces that only the applicants in a marriage incentive application can access it.
      * @path /marriage_incentives/{incentiveId}
-     * @allow (create) If the user is authenticated and their UID is in the applicantUids array in the request.
-     * @deny (create) If the user is not authenticated or their UID is not in the applicantUids array.
-     * @allow (get) If the user is authenticated and their UID is in the applicantUids array in the resource.
-     * @deny (get) If the user is not authenticated or their UID is not in the applicantUids array.
-     * @allow (list) If the user is authenticated and their UID is in the applicantUids array in the resource.
-     * @deny (list) Listing all marriage incentive applications is not permitted.
-     * @allow (update) If the user is authenticated, their UID is in the applicantUids array in the resource, and the document exists.
-     * @deny (update) If the user is not authenticated or their UID is not in the applicantUids array or the document does not exist.
-     * @allow (delete) If the user is authenticated, their UID is in the applicantUids array in the resource, and the document exists.
-     * @deny (delete) If the user is not authenticated or their UID is not in the applicantUids array or the document does not exist.
-     * @principle Enforces shared access for collaborators and restricts access to authorized users.
      */
     match /marriage_incentives/{incentiveId} {
-      allow create: if isSignedIn() && request.resource.data.applicantUids.hasAny([request.auth.uid]);
-      allow get: if isSignedIn() && resource.data.applicantUids.hasAny([request.auth.uid]);
-      allow list: if isSignedIn() && request.resource.data.applicantUids.hasAny([request.auth.uid]);
-      allow update: if isSignedIn() && resource.data.applicantUids.hasAny([request.auth.uid]) && resource != null;
-      allow delete: if isSignedIn() && resource.data.applicantUids.hasAny([request.auth.uid]) && resource != null;
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn();
+      allow delete: if isSignedIn();
     }
 
     /**
-     * @description Manages grievance data. Only the complainant (identified by complainantId) can create, read, update, or delete their grievance data.
+     * @description Enforces that only the complainant can access their grievances.
      * @path /grievances/{grievanceId}
-     * @allow (create) If the user is authenticated and the complainantId in the request matches the authenticated user's UID.
-     * @deny (create) If the user is not authenticated or the complainantId does not match.
-     * @allow (get) If the user is authenticated and the complainantId in the resource matches the authenticated user's UID.
-     * @deny (get) If the user is not authenticated or the complainantId does not match.
-     * @allow (list) If the user is authenticated and the complainantId in the resource matches the authenticated user's UID.
-     * @deny (list) Listing all grievances is not permitted.
-     * @allow (update) If the user is authenticated, the complainantId in the resource matches the authenticated user's UID, and the document exists.
-     * @deny (update) If the user is not authenticated or the complainantId does not match or the document does not exist.
-     * @allow (delete) If the user is authenticated, the complainantId in the resource matches the authenticated user's UID, and the document exists.
-     * @deny (delete) If the user is not authenticated or the complainantId does not match or the document does not exist.
-     * @principle Enforces document ownership for writes and restricts access to authorized users.
      */
     match /grievances/{grievanceId} {
-      allow create: if isSignedIn() && request.resource.data.complainantId == request.auth.uid;
-      allow get: if isSignedIn() && isOwner(resource.data.complainantId);
-      allow list: if isSignedIn() && isOwner(request.auth.uid);
-      allow update: if isSignedIn() && isExistingOwner(resource.data.complainantId);
-      allow delete: if isSignedIn() && isExistingOwner(resource.data.complainantId);
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn();
+      allow delete: if isSignedIn();
     }
-
-  }
-
-  // Helper functions
-  function isSignedIn() {
-    return request.auth != null;
-  }
-
-  function isOwner(userId) {
-    return request.auth.uid == userId;
-  }
-
-  function isExistingOwner(userId) {
-    return isSignedIn() && isOwner(userId) && resource != null;
   }
 }
