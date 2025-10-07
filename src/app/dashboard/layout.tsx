@@ -1,4 +1,7 @@
+'use client' // Required to use usePathname hook
+
 import type { Metadata } from 'next'
+import { usePathname } from 'next/navigation' // Import usePathname
 import { Header } from '@/components/app/header'
 import { MainNav } from '@/components/app/main-nav'
 import {
@@ -12,6 +15,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ShieldCheck } from 'lucide-react'
 
+// Metadata can be exported from a client component
 export const metadata: Metadata = {
   title: 'Saarathi Dashboard',
   description: 'A unified platform for victim support and services.',
@@ -22,6 +26,9 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+  const isAdminPage = pathname.startsWith('/dashboard/admin')
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -31,7 +38,7 @@ export default function DashboardLayout({
       </Sidebar>
       <SidebarInset>
         <div className="relative flex min-h-dvh flex-col">
-          <Header />
+          {!isAdminPage && <Header />} 
           <main className="flex-1 p-4 sm:p-6">{children}</main>
           <div className="absolute bottom-24 right-6 z-10 sm:bottom-6 sm:right-24">
             <Button asChild variant="outline" size="sm">
