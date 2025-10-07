@@ -13,8 +13,8 @@ import { Button } from '@/components/ui/button'
 import { User } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard | Sarathi',
-  description: 'Admin panel for Sarathi victim support platform.',
+  title: 'Admin Dashboard | Saarathi',
+  description: 'Admin panel for Saarathi victim support platform.',
 }
 
 export default function AdminDashboardLayout({

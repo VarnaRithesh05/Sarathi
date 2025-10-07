@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const SarathiLogo = () => (
+const SaarathiLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -30,16 +30,16 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-muted/20">
       <header className="p-4 sm:p-6 flex items-center gap-2">
-        <SarathiLogo />
+        <SaarathiLogo />
         <h1 className="text-2xl font-headline font-semibold text-primary">
-          Sarathi
+          Saarathi
         </h1>
       </header>
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="container max-w-5xl">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="md:col-span-1">
-              <h2 className="font-headline text-4xl font-bold">Welcome to Sarathi</h2>
+              <h2 className="font-headline text-4xl font-bold">Welcome to Saarathi</h2>
               <p className="mt-2 text-muted-foreground">
                 Your guide to justice and rights. Please select your portal to begin.
               </p>
@@ -104,7 +104,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="p-4 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Sarathi Platform. All Rights Reserved.
+        © {new Date().getFullYear()} Saarathi Platform. All Rights Reserved.
       </footer>
     </div>
   );

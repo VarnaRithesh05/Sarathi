@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 import { ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Sarathi Dashboard',
+  title: 'Saarathi Dashboard',
   description: 'A unified platform for victim support and services.',
 }
 

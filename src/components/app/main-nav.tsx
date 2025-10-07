@@ -18,7 +18,7 @@ import {
   HeartHandshake,
 } from 'lucide-react'
 
-const SarathiLogo = () => (
+const SaarathiLogo = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -27,16 +27,12 @@ const SarathiLogo = () => (
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-6 w-6"
+      className="h-7 w-7 text-primary"
     >
-      <path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z"></path>
-      <circle cx="12" cy="12" r="3"></circle>
-      <line x1="12" y1="9" x2="12" y2="2.5"></line>
-      <line x1="12" y1="15" x2="12" y2="21.5"></line>
-      <line x1="15.5" y1="13.25" x2="21.5" y2="13.25"></line>
-      <line x1="8.5" y1="13.25" x2="2.5" y2="13.25"></line>
-      <line x1="15.5" y1="10.75" x2="21.5" y2="10.75"></line>
-      <line x1="8.5" y1="10.75" x2="2.5" y2="10.75"></line>
+      <path d="M9.5 3.5c1.21-1.21 3.07-1.21 4.28 0l6.16 6.16a3 3 0 0 1 0 4.28l-6.16 6.16a3 3 0 0 1-4.28 0L3.34 13.94a3 3 0 0 1 0-4.28z" />
+      <path d="m14 9-4 4" />
+      <path d="m9 9 5 5" />
+      <path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z" />
     </svg>
   );
 
@@ -58,11 +54,11 @@ export function MainNav() {
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <SarathiLogo />
+                <SaarathiLogo />
             </div>
             <div>
                 <h2 className="font-headline text-lg font-semibold text-sidebar-foreground">
-                    Sarathi
+                    Saarathi
                 </h2>
                 <p className="text-xs text-sidebar-foreground/70">Beneficiary Platform</p>
             </div>
