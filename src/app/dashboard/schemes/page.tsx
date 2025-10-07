@@ -1,6 +1,9 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { CheckSquare, ExternalLink } from 'lucide-react'
+import { useToast } from '@/hooks/use-toast'
 
 const schemes = [
     {
@@ -21,6 +24,15 @@ const schemes = [
 ]
 
 export default function SchemesPage() {
+  const { toast } = useToast()
+
+  const handleCheckEligibility = () => {
+    toast({
+      title: "Feature Coming Soon",
+      description: "Automated eligibility checking will be integrated shortly.",
+    })
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -44,7 +56,7 @@ export default function SchemesPage() {
                 <p className="text-sm text-muted-foreground mb-4">
                     Our system uses the data from your profile and registered cases to identify additional support schemes you can benefit from. Click the button to check your eligibility now.
                 </p>
-                <Button>
+                <Button onClick={handleCheckEligibility}>
                     <CheckSquare className="mr-2 h-4 w-4" />
                     Check My Eligibility
                 </Button>
