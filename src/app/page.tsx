@@ -46,8 +46,8 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
                     <CardHeader className="items-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
-                            <BookUser className="h-6 w-6 text-primary" />
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 mb-2">
+                            <BookUser className="h-6 w-6 text-accent" />
                         </div>
                         <CardTitle className="font-headline text-xl">Victim of Atrocity</CardTitle>
                         <CardDescription>
@@ -63,8 +63,8 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
                     <CardHeader className="items-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
-                            <HeartHandshake className="h-6 w-6 text-primary" />
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 mb-2">
+                            <HeartHandshake className="h-6 w-6 text-accent" />
                         </div>
                         <CardTitle className="font-headline text-xl">Inter-Caste Marriage</CardTitle>
                         <CardDescription>
@@ -81,10 +81,10 @@ export default function Home() {
             </div>
 
             <div className="mt-8">
-                 <Card className="bg-card/80">
+                 <Card className="bg-muted/50">
                     <CardHeader className="flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary flex-shrink-0">
-                        <ShieldCheck className="h-6 w-6 text-secondary-foreground" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background flex-shrink-0">
+                        <ShieldCheck className="h-6 w-6 text-primary" />
                     </div>
                     <div className="flex-1">
                         <CardTitle className="font-headline">Official's Portal</CardTitle>
