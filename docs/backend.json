@@ -1,0 +1,248 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Sarathi platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "portals": {
+          "type": "array",
+          "description": "An array indicating which portal(s) the user has registered for (e.g., 'victim', 'incentive').",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "AtrocityCase": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AtrocityCase",
+      "type": "object",
+      "description": "Represents an atrocity case for a victim.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the atrocity case."
+        },
+        "victimId": {
+          "type": "string",
+          "description": "Reference to User. The UID of the victim from the users collection. (Relationship: User 1:N AtrocityCase)"
+        },
+        "firNumber": {
+          "type": "string",
+          "description": "The First Information Report number."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the case ('Submitted', 'Investigation in Progress', 'Chargesheet Filed', 'Trial in Progress', 'Completed')."
+        },
+        "offenseDetails": {
+          "type": "string",
+          "description": "Details describing the nature of the crime."
+        },
+        "reliefEntitlement": {
+          "type": "string",
+          "description": "Relief Entitlement object containing totalAmount (number) and nonMonetary (string)."
+        },
+        "paymentStages": {
+          "type": "array",
+          "description": "An array of payment stages.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "documents": {
+          "type": "array",
+          "description": "An array of documents related to the case.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timelineEvents": {
+          "type": "array",
+          "description": "An array of timeline events to track case history.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the case was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "victimId",
+        "status"
+      ]
+    },
+    "MarriageIncentive": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MarriageIncentive",
+      "type": "object",
+      "description": "Represents an incentive application for an inter-caste marriage.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the marriage incentive application."
+        },
+        "applicantUids": {
+          "type": "array",
+          "description": "References to Users. An array of two user UIDs representing the applicants. (Relationship: User 1:N MarriageIncentive)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the application ('Submitted', 'Documents Verified', 'Approved', 'Disbursed', 'Rejected')."
+        },
+        "documents": {
+          "type": "string",
+          "description": "Object containing URLs for required documents."
+        },
+        "paymentStatus": {
+          "type": "string",
+          "description": "The status of the payment ('Pending', 'Processed')."
+        },
+        "rejectionReason": {
+          "type": "string",
+          "description": "The reason for rejection (optional)."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the application was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "applicantUids",
+        "status"
+      ]
+    },
+    "Grievance": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Grievance",
+      "type": "object",
+      "description": "Represents a grievance filed by a victim.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the grievance."
+        },
+        "complainantId": {
+          "type": "string",
+          "description": "Reference to User. The UID of the user who filed the grievance. (Relationship: User 1:N Grievance)"
+        },
+        "relatedCaseId": {
+          "type": "string",
+          "description": "Reference to AtrocityCase. The document ID from the atrocity_cases collection. (Relationship: AtrocityCase 1:N Grievance)"
+        },
+        "grievanceDetails": {
+          "type": "string",
+          "description": "Details of the grievance."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the grievance ('Open', 'In Review', 'Resolved')."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of when the grievance was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "complainantId",
+        "relatedCaseId",
+        "status"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user authentication information. Document ID is the Firebase Auth UID.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/atrocity_cases/{caseId}",
+        "definition": {
+          "entityName": "AtrocityCase",
+          "schema": {
+            "$ref": "#/backend/entities/AtrocityCase"
+          },
+          "description": "Stores details related to an atrocity case. Includes 'victimId' for authorization independence, enabling rules to validate ownership based on `request.auth.uid == resource.data.victimId`.",
+          "params": [
+            {
+              "name": "caseId",
+              "description": "The unique ID of the atrocity case."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/marriage_incentives/{incentiveId}",
+        "definition": {
+          "entityName": "MarriageIncentive",
+          "schema": {
+            "$ref": "#/backend/entities/MarriageIncentive"
+          },
+          "description": "Stores details for the inter-caste marriage incentive scheme. Includes 'applicantUids' for authorization independence, enabling rules to validate access based on `request.auth.uid in resource.data.applicantUids`.",
+          "params": [
+            {
+              "name": "incentiveId",
+              "description": "The unique ID of the marriage incentive application."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/grievances/{grievanceId}",
+        "definition": {
+          "entityName": "Grievance",
+          "schema": {
+            "$ref": "#/backend/entities/Grievance"
+          },
+          "description": "Stores grievances filed by victims. Includes 'complainantId' and 'relatedCaseId'. Authorization rules ensure that only the user with the matching 'complainantId' can access it.",
+          "params": [
+            {
+              "name": "grievanceId",
+              "description": "The unique ID of the grievance."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to ensure security, scalability, and ease of debugging, particularly focusing on authorization independence. The core principle is to avoid `get()` calls in security rules by denormalizing authorization data. This approach enables atomic operations and simplifies rule evaluation. The structure also segregates data based on its security posture (e.g., private user data vs. collaborative data), making security rules more straightforward and less prone to errors.\n\n1.  **Authorization Independence:** The `atrocity_cases` and `marriage_incentives` collections are structured to enforce authorization based on the `request.auth.uid` and data stored directly within each document, avoiding hierarchical dependencies on other documents. This is achieved through path-based ownership for private data.\n2.  **QAPs (Rules are not Filters):** Segregation of data into separate collections (`users`, `atrocity_cases`, `marriage_incentives`, `grievances`) allows for simple and secure list operations. Rules can be written to allow listing of documents only where `request.auth.uid` matches the `victimId` in `atrocity_cases` or is one of the `applicantUids` in `marriage_incentives`, preventing unauthorized access to data.\n3.  **Private Data:** User-owned data (atrocity cases, marriage incentives, grievances) are stored in collections that are clearly associated with the user.\n4.  **Radical Consistency:** Standardized naming conventions (e.g., `victimId`, `applicantUids`) are used across all collections to enhance readability and maintainability.\n\nSpecifically:\n\n*   The `users` collection stores basic user information and an array of portals the user is registered for.\n*   The `atrocity_cases` collection stores details of atrocity cases, with the `victimId` field representing the user who owns the case.  Security rules will ensure that only the user with the matching `victimId` can read or write the case data.  The `victimId` attribute within the document facilitates Authorization Independence.\n*   The `marriage_incentives` collection stores details of marriage incentive applications, with the `applicantUids` array storing the UIDs of the applicants. Security rules will ensure that only the users with UIDs included in the `applicantUids` array can read or write the application data. The `applicantUids` attribute within the document facilitates Authorization Independence.\n*   The `grievances` collection stores grievances filed by victims, linked to specific cases via the `relatedCaseId`. Security rules ensure that only the user with the matching `complainantId` can read or write the grievance data. The `complainantId` attribute within the document facilitates Authorization Independence.\n\nThis design promotes a clear separation of concerns, making the system more secure, easier to reason about, and simpler to debug. The denormalization strategy is essential for avoiding costly and complex `get()` calls in security rules, supporting atomic operations and efficient data access."
+  }
+}
