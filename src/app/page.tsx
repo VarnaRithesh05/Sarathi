@@ -1,6 +1,7 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ShieldCheck, User, HeartHandshake, BookUser, ArrowRight, FileText, IndianRupee, Scale } from 'lucide-react';
+import { ShieldCheck, User, HeartHandshake, BookUser, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import SaarathiLogo from '@/components/app/saarathi-logo';
 
@@ -8,32 +9,9 @@ import SaarathiLogo from '@/components/app/saarathi-logo';
 export default function Home() {
   const currentYear = new Date().getFullYear();
 
-  const features = [
-    {
-      icon: <FileText className="h-6 w-6 text-primary" />,
-      title: "Atrocity Case Registration",
-      description: "Easily file and register new atrocity cases under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act."
-    },
-    {
-      icon: <IndianRupee className="h-6 w-6 text-primary" />,
-      title: "Track Relief Funds",
-      description: "Get real-time updates on the status of your financial relief, from sanctioning to disbursement."
-    },
-    {
-      icon: <HeartHandshake className="h-6 w-6 text-primary" />,
-      title: "Marriage Incentives",
-      description: "Apply for the incentive scheme for inter-caste marriages and track your application status seamlessly."
-    },
-    {
-      icon: <Scale className="h-6 w-6 text-primary" />,
-      title: "Legal & Support Network",
-      description: "Access a verified network of legal aid providers, NGOs, and support services to guide you."
-    }
-  ]
-
   return (
-    <div className="flex flex-col min-h-dvh bg-background">
-      <header className="sticky top-0 z-40 w-full border-b bg-background/80 px-4 py-3 backdrop-blur-sm sm:px-6">
+    <div className="flex flex-col min-h-dvh bg-muted/20">
+       <header className="sticky top-0 z-40 w-full border-b bg-background/80 px-4 py-3 backdrop-blur-sm sm:px-6">
         <div className="container mx-auto flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3">
                 <SaarathiLogo className="h-10 w-10" />
@@ -56,64 +34,54 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section 
-          className="relative bg-cover bg-center py-20 text-center text-white bg-fixed"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1603205933804-5f566e3c149e?q=80&w=2070&auto=format&fit=crop')" }}
-        >
-          <div className="absolute inset-0 bg-black/60"></div>
-            <div className="container relative mx-auto max-w-4xl">
-                <h2 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                    Your Compass for Justice and Support
-                </h2>
-                <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-200">
-                    Saarathi is a dedicated digital platform designed to empower and assist victims of atrocities and beneficiaries of social welfare schemes with transparency and efficiency.
-                </p>
-                <div className="mt-8 flex justify-center gap-4">
-                    <Button size="lg" asChild>
-                        <Link href="/login">
-                            Go to Victim Portal
-                        </Link>
-                    </Button>
-                    <Button size="lg" variant="secondary" asChild>
-                        <Link href="/login">
-                            Apply for Marriage Incentive
-                        </Link>
-                    </Button>
-                </div>
-            </div>
-        </section>
+      <main className="flex-1 flex flex-col items-center justify-center p-4">
+        <div className="text-center mb-10">
+          <h2 className="font-headline text-4xl font-bold tracking-tighter">Welcome to Saarathi</h2>
+          <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
+            Your guide to justice and rights. Please select your portal to begin.
+          </p>
+        </div>
 
-        {/* Features Section */}
-        <section className="py-20">
-            <div className="container mx-auto max-w-6xl">
-                <div className="text-center mb-12">
-                    <h3 className="font-headline text-3xl font-bold">What We Offer</h3>
-                    <p className="text-muted-foreground mt-2">A streamlined process for accessing your rights.</p>
-                </div>
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                    {features.map((feature) => (
-                         <Card key={feature.title} className="text-center transition-all hover:shadow-lg hover:-translate-y-1">
-                            <CardHeader className="items-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
-                                    {feature.icon}
-                                </div>
-                                <CardTitle className="font-headline text-lg">{feature.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground">{feature.description}</p>
-                            </CardContent>
-                         </Card>
-                    ))}
-                </div>
+        <div className="w-full max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
+                    <CardHeader className="items-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
+                            <BookUser className="h-6 w-6 text-primary" />
+                        </div>
+                        <CardTitle className="font-headline text-xl">Victim of Atrocity</CardTitle>
+                        <CardDescription>
+                            File a case, track its status, and access relief funds.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1" />
+                    <CardContent>
+                        <Button asChild className="w-full">
+                            <Link href="/login">Go to Victim Portal</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+                <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
+                    <CardHeader className="items-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
+                            <HeartHandshake className="h-6 w-6 text-primary" />
+                        </div>
+                        <CardTitle className="font-headline text-xl">Inter-Caste Marriage</CardTitle>
+                        <CardDescription>
+                            Apply for the incentive scheme and monitor your application.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1" />
+                    <CardContent>
+                        <Button asChild className="w-full">
+                            <Link href="/login">Apply for Incentive</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
             </div>
-        </section>
 
-        {/* Officials Portal Section */}
-        <section className="bg-muted/30 py-16">
-            <div className="container mx-auto">
-                <Card className="bg-card/80">
+            <div className="mt-8">
+                 <Card className="bg-card/80">
                     <CardHeader className="flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary flex-shrink-0">
                         <ShieldCheck className="h-6 w-6 text-secondary-foreground" />
@@ -132,11 +100,11 @@ export default function Home() {
                     </CardHeader>
                 </Card>
             </div>
-        </section>
+        </div>
       </main>
 
-      <footer className="border-t">
-        <div className="container mx-auto p-4 text-center text-sm text-muted-foreground">
+      <footer className="w-full py-4">
+        <div className="container mx-auto text-center text-sm text-muted-foreground">
             © {currentYear} Saarathi Platform. All Rights Reserved.
         </div>
       </footer>
