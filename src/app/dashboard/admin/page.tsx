@@ -27,7 +27,7 @@ export default function AdminDashboardOverviewPage() {
     .reduce((acc, c) => acc + c.amount, 0);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="container mx-auto max-w-7xl space-y-8">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
           Admin Command Center
