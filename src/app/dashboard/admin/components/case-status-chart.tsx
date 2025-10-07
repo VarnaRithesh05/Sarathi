@@ -24,19 +24,19 @@ export function CaseStatusChart() {
     },
     pending: {
       label: "Pending",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(var(--chart-2))", // Golden Yellow
     },
     approved: {
       label: "Approved",
-      color: "hsl(var(--chart-2))",
+      color: "hsl(var(--chart-1))", // Deep Blue
     },
     disbursed: {
         label: "Disbursed",
-        color: "hsl(var(--chart-3))",
+        color: "hsl(var(--chart-3))", // Grey
     },
     rejected: {
         label: "Rejected",
-        color: "hsl(var(--chart-4))",
+        color: "hsl(var(--chart-4))", // Red
     }
   } satisfies ChartConfig
 

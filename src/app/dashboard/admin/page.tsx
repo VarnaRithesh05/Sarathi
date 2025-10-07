@@ -52,7 +52,7 @@ export default function AdminDashboardOverviewPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">New Cases Reported</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
+            <FileText className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{newCases}</div>
@@ -64,7 +64,7 @@ export default function AdminDashboardOverviewPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Sanctions Pending</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
+            <Activity className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{pendingPayments}</div>
@@ -76,7 +76,7 @@ export default function AdminDashboardOverviewPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">New Grievances Filed</CardTitle>
-            <MessageSquareWarning className="h-4 w-4 text-muted-foreground" />
+            <MessageSquareWarning className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{newGrievances}</div>
@@ -90,7 +90,7 @@ export default function AdminDashboardOverviewPage() {
             <CardTitle className="text-sm font-medium">
               Total Amount Disbursed
             </CardTitle>
-            <CircleDollarSign className="h-4 w-4 text-muted-foreground" />
+            <CircleDollarSign className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
