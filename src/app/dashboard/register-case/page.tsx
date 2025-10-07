@@ -21,6 +21,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast'
 import { Upload, ShieldCheck } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import DigilockerLogo from '@/components/app/digilocker-logo'
 
 const formSchema = z.object({
   victimName: z.string().min(2, {
@@ -165,8 +166,8 @@ export default function RegisterCasePage() {
                                 </label>
                             </div>
                             <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg bg-muted/50 p-6">
-                                <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/DigiLocker_logo.svg/1200px-DigiLocker_logo.svg.png" alt="DigiLocker Logo" className="h-12 mb-4" width={200} height={48} />
-                                <p className="text-center text-sm text-muted-foreground mb-4">
+                               <DigilockerLogo className="h-20" />
+                                <p className="text-center text-sm text-muted-foreground my-4">
                                     Verify your documents quickly and securely with DigiLocker.
                                 </p>
                                 <Button 
