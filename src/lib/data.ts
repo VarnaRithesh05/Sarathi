@@ -117,6 +117,7 @@ export const mockGrievances: Grievance[] = [
         id: 'GRV-001',
         caseId: 'CASE-003',
         subject: 'Delay in case processing',
+        description: 'It has been over 60 days and the investigation for my case has not been completed. I have not received any updates from the assigned officer and I am concerned about the status of my relief payment.',
         status: 'In Progress',
         date: format(subDays(now, 5), 'yyyy-MM-dd'),
     },
@@ -124,6 +125,7 @@ export const mockGrievances: Grievance[] = [
         id: 'GRV-002',
         caseId: 'CASE-001',
         subject: 'Incorrect disbursement amount',
+        description: 'The relief amount disbursed for my case was less than what was sanctioned. I was approved for 50,000 INR but only received 45,000 INR in my bank account. Please investigate this discrepancy.',
         status: 'Resolved',
         date: format(subDays(now, 20), 'yyyy-MM-dd'),
     }

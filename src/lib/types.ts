@@ -31,6 +31,7 @@ export type Grievance = {
   id: string;
   caseId: string;
   subject: string;
+  description?: string;
   status: 'Open' | 'In Progress' | 'Resolved';
   date: string;
 };
