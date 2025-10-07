@@ -11,6 +11,12 @@ const mockCaseData = JSON.stringify([
   { "id": "C004", "district": "East District", "disbursement_delay_days": 20, "latitude": 28.63, "longitude": 77.29, "weight": 25 },
   { "id": "C005", "district": "West District", "disbursement_delay_days": 8, "latitude": 28.66, "longitude": 77.09, "weight": 12 },
   { "id": "C006", "district": "South District", "disbursement_delay_days": 15, "latitude": 28.52, "longitude": 77.23, "weight": 18 },
+  { "id": "C007", "district": "Central District", "disbursement_delay_days": 2, "latitude": 28.61, "longitude": 77.22, "weight": 5 },
+  { "id": "C008", "district": "West District", "disbursement_delay_days": 10, "latitude": 28.68, "longitude": 77.11, "weight": 22 },
+  { "id": "C009", "district": "East District", "disbursement_delay_days": 25, "latitude": 28.64, "longitude": 77.30, "weight": 30 },
+  { "id": "C010", "district": "North District", "disbursement_delay_days": 7, "latitude": 28.72, "longitude": 77.12, "weight": 18 },
+  { "id": "C011", "district": "South District", "disbursement_delay_days": 18, "latitude": 28.48, "longitude": 77.19, "weight": 11 },
+  { "id": "C012", "district": "Central District", "disbursement_delay_days": 4, "latitude": 28.62, "longitude": 77.23, "weight": 9 }
 ]);
 
 export default async function InsightsPage() {
