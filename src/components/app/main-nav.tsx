@@ -18,14 +18,14 @@ export function MainNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-6">
+    <nav className="hidden md:flex items-center gap-6 text-sm font-medium ml-6">
       {links.map((link) => (
         <Link
           key={link.href}
           href={link.href}
           className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname.startsWith(link.href) ? "text-foreground" : "text-foreground/60"
+            "whitespace-nowrap transition-colors hover:text-primary",
+            pathname.startsWith(link.href) ? "text-foreground font-semibold" : "text-foreground/60"
           )}
         >
           {link.label}
