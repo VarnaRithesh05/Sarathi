@@ -17,7 +17,7 @@ const VisualizeCaseDataInputSchema = z.object({
 export type VisualizeCaseDataInput = z.infer<typeof VisualizeCaseDataInputSchema>;
 
 const VisualizeCaseDataOutputSchema = z.object({
-  visualization: z.string().describe('A description of the visualized case data, including trends, concentrations, and delays.'),
+  visualization: z.string().describe('A detailed, multi-sentence analysis of the case data, highlighting trends, geographical concentrations, and disbursement delays. Identify specific districts by name.'),
   heatmapData: z.string().describe('JSON string containing data suitable for rendering a geographical heatmap.'),
 });
 export type VisualizeCaseDataOutput = z.infer<typeof VisualizeCaseDataOutputSchema>;
@@ -31,13 +31,15 @@ const prompt = ai.definePrompt({
   input: {schema: VisualizeCaseDataInputSchema},
   output: {schema: VisualizeCaseDataOutputSchema},
   prompt: `You are an expert data visualizer for policy-makers.
-  Your task is to analyze the provided case data and provide a summary of the key trends,
-  geographical concentrations, and disbursement delays.  Also, generate heatmap data based on the case data.
+  Your task is to analyze the provided case data and provide a detailed summary covering three key areas:
+  1.  **Geographical Concentrations**: Identify which specific districts have the highest case concentrations.
+  2.  **Disbursement Delays**: Pinpoint the districts experiencing the longest disbursement delays and quantify them.
+  3.  **Trends & Recommendations**: Based on the data, describe any notable trends and suggest a concrete policy recommendation.
 
   Case Data: {{{caseData}}}
 
-  Provide your analysis in the 'visualization' field.  In the 'heatmapData' field, provide a JSON object containing
-  data suitable for rendering a geographical heatmap.  The JSON object should contain an array of objects, each with
+  Provide your analysis in the 'visualization' field. In the 'heatmapData' field, provide a JSON object containing
+  data suitable for rendering a geographical heatmap. The JSON object should contain an array of objects, each with
   a 'latitude', 'longitude', and 'weight' (case count) field.
   `,
 });

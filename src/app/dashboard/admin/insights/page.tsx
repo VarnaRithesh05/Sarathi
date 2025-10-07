@@ -42,18 +42,18 @@ export default async function InsightsPage() {
     visualization = "AI analysis is currently unavailable. Showing mock analysis: The data indicates a high concentration of cases in the East District, which also experiences the longest disbursement delays. Policy intervention may be required in this area to improve efficiency. North and West districts show moderate case loads with better processing times."
   }
   
-    // Simple parsing logic for demonstration
-    if (visualization) {
-        const concentrationMatch = visualization.match(/concentration of cases in the (.*?)\./);
-        const delaysMatch = visualization.match(/experiences the longest disbursement delays\./);
-        const trendsMatch = visualization.match(/Policy intervention may be required(.*?)\./);
-        
-        analysisParts = {
-            concentration: concentrationMatch ? `High concentration in ${concentrationMatch[1]}.` : "No specific concentration detected.",
-            delays: delaysMatch ? 'Significant disbursement delays identified.' : "Disbursement times are within acceptable limits.",
-            trends: trendsMatch ? `Policy intervention may be required ${trendsMatch[1]}.` : "Current trends appear stable."
-        };
-    }
+  if (visualization) {
+    // A more flexible parsing logic.
+    const concentrationMatch = visualization.match(/Concentration[s]?:\s*(.*?)(?=\s*Disbursement Delays:|\s*Trends & Recommendations:|$)/is);
+    const delaysMatch = visualization.match(/Disbursement Delays:\s*(.*?)(?=\s*Trends & Recommendations:|$)/is);
+    const trendsMatch = visualization.match(/Trends & Recommendations:\s*(.*)/is);
+
+    analysisParts = {
+        concentration: concentrationMatch ? concentrationMatch[1].trim() : "No specific concentration detected.",
+        delays: delaysMatch ? delaysMatch[1].trim() : "Disbursement times analysis is unavailable.",
+        trends: trendsMatch ? trendsMatch[1].trim() : "No specific trends or recommendations available."
+    };
+  }
 
 
   return (
