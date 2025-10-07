@@ -38,10 +38,8 @@ export default function AdminDashboardLayout({
             <SidebarTrigger className="md:hidden" />
              <div className="flex-1">
               <Link href="/dashboard/admin" className="flex items-center gap-3">
-                <div className="hidden md:block">
-                  <SaarathiLogo />
-                </div>
-                <h1 className="hidden text-xl font-headline font-semibold md:block" style={{color: '#1A202C'}}>
+                <SaarathiLogo />
+                <h1 className="text-xl font-headline font-semibold" style={{color: '#1A202C'}}>
                   Saarathi
                 </h1>
               </Link>
