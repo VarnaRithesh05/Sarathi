@@ -16,14 +16,10 @@ const SarathiLogo = () => (
     strokeLinejoin="round"
     className="h-7 w-7 text-primary"
   >
-    <path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z"></path>
-    <circle cx="12" cy="12" r="3"></circle>
-    <line x1="12" y1="9" x2="12" y2="2.5"></line>
-    <line x1="12" y1="15" x2="12" y2="21.5"></line>
-    <line x1="15.5" y1="13.25" x2="21.5" y2="13.25"></line>
-    <line x1="8.5" y1="13.25" x2="2.5" y2="13.25"></line>
-    <line x1="15.5" y1="10.75" x2="21.5" y2="10.75"></line>
-    <line x1="8.5" y1="10.75" x2="2.5" y2="10.75"></line>
+    <path d="M9.5 3.5c1.21-1.21 3.07-1.21 4.28 0l6.16 6.16a3 3 0 0 1 0 4.28l-6.16 6.16a3 3 0 0 1-4.28 0L3.34 13.94a3 3 0 0 1 0-4.28z" />
+    <path d="m14 9-4 4" />
+    <path d="m9 9 5 5" />
+    <path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z" />
   </svg>
 );
 
@@ -49,8 +45,8 @@ export default function Home() {
               </p>
             </div>
             <div className="grid gap-6 md:col-span-2 sm:grid-cols-2">
-              <Card>
-                <CardHeader>
+              <Card className="flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-2">
                     <BookUser className="h-6 w-6 text-primary" />
                   </div>
@@ -67,8 +63,8 @@ export default function Home() {
                   </Button>
                 </CardFooter>
               </Card>
-              <Card>
-                <CardHeader>
+              <Card className="flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-2">
                     <HeartHandshake className="h-6 w-6 text-primary" />
                   </div>
