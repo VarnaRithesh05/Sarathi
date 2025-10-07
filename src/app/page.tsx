@@ -59,8 +59,8 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section 
-          className="relative bg-cover bg-center py-20 text-center text-white"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=2070&auto=format&fit=crop')" }}
+          className="relative bg-cover bg-center py-20 text-center text-white bg-fixed"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1603205933804-5f566e3c149e?q=80&w=2070&auto=format&fit=crop')" }}
         >
           <div className="absolute inset-0 bg-black/60"></div>
             <div className="container relative mx-auto max-w-4xl">
