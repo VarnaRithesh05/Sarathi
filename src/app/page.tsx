@@ -58,12 +58,16 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-20 text-center bg-muted/20">
-            <div className="container mx-auto max-w-4xl">
+        <section 
+          className="relative bg-cover bg-center py-20 text-center text-white"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1528747045269-3904978e3559?q=80&w=2070&auto=format&fit=crop')" }}
+        >
+          <div className="absolute inset-0 bg-black/60"></div>
+            <div className="container relative mx-auto max-w-4xl">
                 <h2 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                     Your Compass for Justice and Support
                 </h2>
-                <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
+                <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-200">
                     Saarathi is a dedicated digital platform designed to empower and assist victims of atrocities and beneficiaries of social welfare schemes with transparency and efficiency.
                 </p>
                 <div className="mt-8 flex justify-center gap-4">
@@ -72,7 +76,7 @@ export default function Home() {
                             Go to Victim Portal
                         </Link>
                     </Button>
-                    <Button size="lg" variant="outline" asChild>
+                    <Button size="lg" variant="secondary" asChild>
                         <Link href="/login">
                             Apply for Marriage Incentive
                         </Link>
