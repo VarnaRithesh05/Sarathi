@@ -1,6 +1,5 @@
 'use client' // Required to use usePathname hook
 
-import type { Metadata } from 'next'
 import { usePathname } from 'next/navigation' // Import usePathname
 import { Header } from '@/components/app/header'
 import { MainNav } from '@/components/app/main-nav'
@@ -15,11 +14,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ShieldCheck } from 'lucide-react'
 
-// Metadata can be exported from a client component
-export const metadata: Metadata = {
-  title: 'Saarathi Dashboard',
-  description: 'A unified platform for victim support and services.',
-}
 
 export default function DashboardLayout({
   children,
