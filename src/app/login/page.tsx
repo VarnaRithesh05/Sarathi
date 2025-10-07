@@ -10,15 +10,74 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import SaarathiLogo from "@/components/app/saarathi-logo"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Suspense } from 'react'
 
+function UserLoginCard() {
+  return (
+    <Card>
+      <CardHeader className="text-center">
+        <CardTitle className="text-2xl font-headline">User Sign In</CardTitle>
+        <CardDescription>
+          Enter your mobile number to receive a one-time password (OTP).
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="grid gap-2">
+          <Label htmlFor="mobile">Mobile Number</Label>
+          <Input id="mobile" type="tel" placeholder="e.g., 9876543210" required />
+        </div>
+        <Button type="submit" className="w-full">
+          Send OTP
+        </Button>
+         <div className="mt-4 text-center text-sm">
+          Don&apos;t have an account?{" "}
+          <Link href="#" className="underline">
+            Sign up
+          </Link>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function AdminLoginCard() {
+  return (
+    <Card>
+      <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-headline">Admin Sign In</CardTitle>
+          <CardDescription>
+              Enter your official credentials to access the dashboard.
+          </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="admin@example.gov.in"
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="password">Password</Label>
+          <Input id="password" type="password" required />
+        </div>
+        <Button type="submit" className="w-full">
+          Sign In
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+
+
 function LoginPageContent() {
   const searchParams = useSearchParams()
-  const defaultTab = searchParams.get('tab') === 'admin' ? 'admin' : 'user'
+  const isAdminLogin = searchParams.get('tab') === 'admin'
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center bg-muted/20 p-4">
@@ -30,65 +89,9 @@ function LoginPageContent() {
           </h1>
         </Link>
       </div>
-      <Tabs defaultValue={defaultTab} className="w-full max-w-sm">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="user">User Login</TabsTrigger>
-          <TabsTrigger value="admin">Admin Login</TabsTrigger>
-        </TabsList>
-        <TabsContent value="user">
-          <Card>
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-headline">User Sign In</CardTitle>
-              <CardDescription>
-                Enter your mobile number to receive a one-time password (OTP).
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-2">
-                <Label htmlFor="mobile">Mobile Number</Label>
-                <Input id="mobile" type="tel" placeholder="e.g., 9876543210" required />
-              </div>
-              <Button type="submit" className="w-full">
-                Send OTP
-              </Button>
-               <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link href="#" className="underline">
-                  Sign up
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="admin">
-          <Card>
-            <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-headline">Admin Sign In</CardTitle>
-                <CardDescription>
-                    Enter your official credentials to access the dashboard.
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@example.gov.in"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required />
-              </div>
-              <Button type="submit" className="w-full">
-                Sign In
-              </Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+      <div className="w-full max-w-sm">
+        {isAdminLogin ? <AdminLoginCard /> : <UserLoginCard />}
+      </div>
       <footer className="absolute bottom-4 text-center text-sm text-muted-foreground">
         © {new Date().getFullYear()} Saarathi Platform. All Rights Reserved.
       </footer>
