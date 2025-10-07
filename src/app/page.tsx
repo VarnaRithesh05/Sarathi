@@ -4,7 +4,29 @@ import { ShieldCheck, User, HeartHandshake, BookUser } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Compass } from 'lucide-react';
+
+const SarathiLogo = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-7 w-7 text-primary"
+  >
+    <path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+    <line x1="12" y1="9" x2="12" y2="2.5"></line>
+    <line x1="12" y1="15" x2="12" y2="21.5"></line>
+    <line x1="15.5" y1="13.25" x2="21.5" y2="13.25"></line>
+    <line x1="8.5" y1="13.25" x2="2.5" y2="13.25"></line>
+    <line x1="15.5" y1="10.75" x2="21.5" y2="10.75"></line>
+    <line x1="8.5" y1="10.75" x2="2.5" y2="10.75"></line>
+  </svg>
+);
+
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'card-image-3');
@@ -12,7 +34,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-muted/20">
       <header className="p-4 sm:p-6 flex items-center gap-2">
-        <Compass className="h-7 w-7 text-primary" />
+        <SarathiLogo />
         <h1 className="text-2xl font-headline font-semibold text-primary">
           Sarathi
         </h1>
