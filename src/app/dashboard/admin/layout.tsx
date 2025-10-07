@@ -1,13 +1,5 @@
 import type { Metadata } from 'next'
 import { AdminNav } from '@/components/app/admin-nav'
-import {
-  Sidebar,
-  SidebarProvider,
-  SidebarContent,
-  SidebarInset,
-  SidebarTrigger,
-  SidebarRail,
-} from '@/components/ui/sidebar'
 import Chatbot from '@/components/app/chatbot'
 import { Button } from '@/components/ui/button'
 import { Bell } from 'lucide-react'
@@ -27,36 +19,28 @@ export default function AdminDashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <SidebarProvider>
-      <Sidebar collapsible="icon">
-        <SidebarContent>
-          <AdminNav />
-        </SidebarContent>
-        <SidebarRail />
-      </Sidebar>
-      <SidebarInset>
-        <div className="relative flex min-h-dvh flex-col">
-          <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
-            <SidebarTrigger className="md:hidden" />
-             <div className="flex-1">
-              <Link href="/dashboard/admin" className="flex items-center gap-3">
-                <SaarathiLogo />
-                <h1 className="text-xl font-headline font-semibold" style={{color: '#1A202C'}}>
-                  Saarathi
-                </h1>
-              </Link>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" aria-label="Notifications">
-                <Bell className="h-5 w-5" />
-              </Button>
-              <UserNav />
-            </div>
-          </header>
-          <main className="flex-1 p-4 sm:p-6">{children}</main>
-          <Chatbot />
+    <div className="relative flex min-h-dvh flex-col">
+      <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
+        <div className="flex items-center gap-3">
+          <Link href="/dashboard/admin" className="flex items-center gap-3">
+            <SaarathiLogo />
+            <h1 className="text-xl font-headline font-semibold" style={{color: '#1A202C'}}>
+              Saarathi
+            </h1>
+          </Link>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+        <div className="flex-1">
+          <AdminNav />
+        </div>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" aria-label="Notifications">
+            <Bell className="h-5 w-5" />
+          </Button>
+          <UserNav />
+        </div>
+      </header>
+      <main className="flex-1 p-4 sm:p-6">{children}</main>
+      <Chatbot />
+    </div>
   )
 }
