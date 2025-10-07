@@ -60,7 +60,7 @@ export default function Home() {
         {/* Hero Section */}
         <section 
           className="relative bg-cover bg-center py-20 text-center text-white"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1528747045269-3904978e3559?q=80&w=2070&auto=format&fit=crop')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=2070&auto=format&fit=crop')" }}
         >
           <div className="absolute inset-0 bg-black/60"></div>
             <div className="container relative mx-auto max-w-4xl">
