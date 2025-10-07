@@ -33,7 +33,7 @@ export default function DashboardOverviewPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
-          Welcome Back, Victim User
+          Welcome Back
         </h1>
         <p className="text-muted-foreground">
           Here is a summary of your activities and cases.
