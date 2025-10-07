@@ -5,6 +5,7 @@ import {
   SidebarProvider,
   SidebarContent,
   SidebarInset,
+  SidebarTrigger,
 } from '@/components/ui/sidebar'
 import Chatbot from '@/components/app/chatbot'
 import { Button } from '@/components/ui/button'
@@ -32,6 +33,7 @@ export default function AdminDashboardLayout({
       <SidebarInset>
         <div className="relative flex min-h-dvh flex-col">
           <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
+            <SidebarTrigger className="md:hidden" />
             <div className="flex-1" />
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon" aria-label="Notifications">
