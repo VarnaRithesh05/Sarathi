@@ -1,3 +1,5 @@
+'use client';
+
 import { visualizeCaseData } from '@/ai/flows/visualize-case-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { InsightsCharts } from '@/app/dashboard/admin/insights/components/insights-charts';
