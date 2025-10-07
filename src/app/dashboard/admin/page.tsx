@@ -43,7 +43,7 @@ export default function AdminDashboardOverviewPage() {
           <CardContent>
             <div className="text-2xl font-bold">{totalCases}</div>
             <p className="text-xs text-muted-foreground">
-              Total cases registered in the system
+              Total cases registered
             </p>
           </CardContent>
         </Card>
@@ -55,7 +55,7 @@ export default function AdminDashboardOverviewPage() {
           <CardContent>
             <div className="text-2xl font-bold">{pendingCases}</div>
             <p className="text-xs text-muted-foreground">
-              Cases awaiting approval or action
+              Cases awaiting action
             </p>
           </CardContent>
         </Card>
