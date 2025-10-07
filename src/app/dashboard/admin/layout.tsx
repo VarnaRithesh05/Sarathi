@@ -9,8 +9,7 @@ import {
 import Chatbot from '@/components/app/chatbot'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { User, Bell } from 'lucide-react'
-import { UserNav } from '@/components/app/user-nav'
+import { User, Bell, UserNav } from 'lucide-react'
 
 
 export const metadata: Metadata = {
@@ -42,14 +41,6 @@ export default function AdminDashboardLayout({
             </div>
           </header>
           <main className="flex-1 p-4 sm:p-6">{children}</main>
-          <div className="absolute bottom-24 right-6 z-10 sm:bottom-6 sm:right-24">
-             <Button asChild variant="outline" size="sm">
-              <Link href="/dashboard">
-                <User className="mr-2 h-4 w-4" />
-                Victim View
-              </Link>
-            </Button>
-          </div>
           <Chatbot />
         </div>
       </SidebarInset>

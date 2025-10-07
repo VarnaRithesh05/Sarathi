@@ -8,17 +8,20 @@ import {
 import { mockCases } from '@/lib/data'
 import {
   Activity,
-  AlertCircle,
-  CheckCircle2,
+  AlertOctagon,
   CircleDollarSign,
   FileText,
+  MessageSquareWarning,
   Users,
 } from 'lucide-react'
 import { CaseTable } from '../cases/components/case-table'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { CaseStatusChart } from './components/case-status-chart'
 
 export default function AdminDashboardOverviewPage() {
-  const totalCases = mockCases.length;
-  const pendingCases = mockCases.filter(c => c.status === 'Pending').length;
+  const newCases = mockCases.filter(c => c.status === 'Pending').length;
+  const pendingPayments = mockCases.filter(c => c.status === 'Approved').length;
+  const newGrievances = 2; // Mock data
   const totalDisbursed = mockCases
     .filter(c => c.status === 'Disbursed')
     .reduce((acc, c) => acc + c.amount, 0);
@@ -27,35 +30,58 @@ export default function AdminDashboardOverviewPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
-          Admin Overview
+          Admin Command Center
         </h1>
         <p className="text-muted-foreground">
-          A high-level summary of all victim support activities.
+          A high-level overview of urgent tasks and platform activities.
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+       <Alert variant="destructive" className="bg-destructive/5">
+        <AlertOctagon className="h-4 w-4" />
+        <AlertTitle className="font-headline">Urgent Alerts</AlertTitle>
+        <AlertDescription>
+          <ul className="list-disc pl-5 text-sm">
+            <li><span className="font-semibold">3 cases</span> are nearing the 60-day investigation deadline.</li>
+            <li><span className="font-semibold">5 relief payments</span> are pending for more than 7 days.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
+            <CardTitle className="text-sm font-medium">New Cases Reported</CardTitle>
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalCases}</div>
+            <div className="text-2xl font-bold">{newCases}</div>
             <p className="text-xs text-muted-foreground">
-              Total cases registered
+              New atrocity cases filed
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Review</CardTitle>
+            <CardTitle className="text-sm font-medium">Payments Pending Sanction</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{pendingCases}</div>
+            <div className="text-2xl font-bold">{pendingPayments}</div>
             <p className="text-xs text-muted-foreground">
-              Cases awaiting action
+              Relief payments awaiting your approval
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">New Grievances Filed</CardTitle>
+            <MessageSquareWarning className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{newGrievances}</div>
+            <p className="text-xs text-muted-foreground">
+              Complaints requiring review
             </p>
           </CardContent>
         </Card>
@@ -81,15 +107,26 @@ export default function AdminDashboardOverviewPage() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-            <CardTitle>All Recent Cases</CardTitle>
-            <CardDescription>A view of the most recently updated cases in the system.</CardDescription>
-        </CardHeader>
-        <CardContent>
-            <CaseTable data={mockCases} />
-        </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+        <Card className="lg:col-span-2">
+            <CardHeader>
+                <CardTitle>Case Status Funnel</CardTitle>
+                <CardDescription>Visual summary of the justice delivery pipeline.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <CaseStatusChart />
+            </CardContent>
+        </Card>
+        <Card className="lg:col-span-3">
+            <CardHeader>
+                <CardTitle>Recent Case Updates</CardTitle>
+                <CardDescription>The most recently updated cases in the system.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <CaseTable data={mockCases.slice(0, 5)} />
+            </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
