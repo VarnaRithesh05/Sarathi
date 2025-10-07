@@ -13,15 +13,27 @@ import { Label } from "@/components/ui/label"
 import SaarathiLogo from "@/components/app/saarathi-logo"
 import Link from "next/link"
 import { useSearchParams, useRouter } from "next/navigation"
-import { Suspense, FormEvent } from 'react'
+import { Suspense, FormEvent, useState } from 'react'
 
 function UserLoginCard() {
   const router = useRouter()
+  const [step, setStep] = useState<'enter-mobile' | 'enter-otp'>('enter-mobile')
+  const [mobileNumber, setMobileNumber] = useState('')
 
-  const handleLogin = (e: FormEvent) => {
+  const handleSendOtp = (e: FormEvent) => {
     e.preventDefault()
-    // In a real app, you would handle OTP sending and verification here.
-    // For now, we'll navigate directly to the dashboard.
+    // In a real app, you would handle OTP sending here.
+    // For now, we'll just move to the next step.
+    const form = e.target as HTMLFormElement
+    const mobileInput = form.elements.namedItem('mobile') as HTMLInputElement
+    setMobileNumber(mobileInput.value)
+    setStep('enter-otp')
+  }
+
+  const handleVerifyOtp = (e: FormEvent) => {
+    e.preventDefault()
+    // In a real app, you would verify the OTP here.
+    // For now, any 6-digit OTP is considered valid.
     router.push('/dashboard')
   }
 
@@ -30,25 +42,59 @@ function UserLoginCard() {
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-headline">User Sign In</CardTitle>
         <CardDescription>
-          Enter your mobile number to receive a one-time password (OTP).
+          {step === 'enter-mobile'
+            ? 'Enter your mobile number to receive a one-time password (OTP).'
+            : `Enter the 6-digit OTP sent to ${mobileNumber}`}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div className="grid gap-2">
-            <Label htmlFor="mobile">Mobile Number</Label>
-            <Input id="mobile" type="tel" placeholder="e.g., 9876543210" required />
-          </div>
-          <Button type="submit" className="w-full">
-            Send OTP
-          </Button>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="#" className="underline">
-              Sign up
-            </Link>
-          </div>
-        </form>
+        {step === 'enter-mobile' ? (
+          <form onSubmit={handleSendOtp} className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="mobile">Mobile Number</Label>
+              <Input
+                id="mobile"
+                name="mobile"
+                type="tel"
+                placeholder="e.g., 9876543210"
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Send OTP
+            </Button>
+            <div className="mt-4 text-center text-sm">
+              Don&apos;t have an account?{" "}
+              <Link href="#" className="underline">
+                Sign up
+              </Link>
+            </div>
+          </form>
+        ) : (
+          <form onSubmit={handleVerifyOtp} className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="otp">One-Time Password</Label>
+              <Input
+                id="otp"
+                type="text"
+                inputMode="numeric"
+                placeholder="Enter 6-digit OTP"
+                required
+                minLength={6}
+                maxLength={6}
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Verify OTP
+            </Button>
+            <div className="mt-4 text-center text-sm">
+              Didn&apos;t receive the code?{" "}
+              <Button variant="link" type="button" className="p-0 h-auto" onClick={() => setStep('enter-mobile')}>
+                Change number
+              </Button>
+            </div>
+          </form>
+        )}
       </CardContent>
     </Card>
   )
