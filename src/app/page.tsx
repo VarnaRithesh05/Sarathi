@@ -76,7 +76,7 @@ export default function Home() {
                 </CardDescription>
               </div>
               <Button asChild className="ml-auto" variant="outline">
-                <Link href="/login">
+                <Link href="/login?tab=admin">
                   Login to Admin Dashboard
                 </Link>
               </Button>

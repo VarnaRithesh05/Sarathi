@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,8 +13,13 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import SaarathiLogo from "@/components/app/saarathi-logo"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginPageContent() {
+  const searchParams = useSearchParams()
+  const defaultTab = searchParams.get('tab') === 'admin' ? 'admin' : 'user'
+
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center bg-muted/20 p-4">
       <div className="absolute left-4 top-4 flex items-center gap-3 sm:left-6 sm:top-6">
@@ -23,7 +30,7 @@ export default function LoginPage() {
           </h1>
         </Link>
       </div>
-      <Tabs defaultValue="user" className="w-full max-w-sm">
+      <Tabs defaultValue={defaultTab} className="w-full max-w-sm">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="user">User Login</TabsTrigger>
           <TabsTrigger value="admin">Admin Login</TabsTrigger>
@@ -86,5 +93,14 @@ export default function LoginPage() {
         © {new Date().getFullYear()} Saarathi Platform. All Rights Reserved.
       </footer>
     </div>
+  )
+}
+
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginPageContent />
+    </Suspense>
   )
 }
