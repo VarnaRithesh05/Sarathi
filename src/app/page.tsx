@@ -4,7 +4,7 @@ import { ShieldCheck, User, HeartHandshake, BookUser } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Navigation } from 'lucide-react';
+import { Compass } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'card-image-3');
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-muted/20">
       <header className="p-4 sm:p-6 flex items-center gap-2">
-        <Navigation className="h-7 w-7 text-primary" />
+        <Compass className="h-7 w-7 text-primary" />
         <h1 className="text-2xl font-headline font-semibold text-primary">
           Sarathi
         </h1>

@@ -1,7 +1,7 @@
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
 import { UserNav } from '@/components/app/user-nav'
-import { Bell, Navigation } from 'lucide-react'
+import { Bell, Compass } from 'lucide-react'
 import Link from 'next/link'
 
 export function Header() {
@@ -10,7 +10,7 @@ export function Header() {
       <SidebarTrigger className="md:hidden" />
       <div className="flex-1">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <Navigation className="hidden h-6 w-6 text-primary md:block" />
+          <Compass className="hidden h-6 w-6 text-primary md:block" />
           <h1 className="hidden text-2xl font-headline font-semibold text-primary md:block">
             Sarathi
           </h1>
