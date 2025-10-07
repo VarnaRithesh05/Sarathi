@@ -17,7 +17,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/hooks/use-toast'
-import { Upload } from 'lucide-react'
+import { Upload, ShieldCheck } from 'lucide-react'
 
 const formSchema = z.object({
   applicantName1: z.string().min(2, {
@@ -121,7 +121,10 @@ export default function InterCasteMarriagePage() {
                     render={({ field }) => (
                     <FormItem>
                         <FormLabel>Upload Documents</FormLabel>
-                        <FormControl>
+                        <FormDescription>
+                           Upload documents via file upload or connect with DigiLocker for verification.
+                        </FormDescription>
+                        <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
                             <div className="flex items-center justify-center w-full">
                                 <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted">
                                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -131,11 +134,17 @@ export default function InterCasteMarriagePage() {
                                     </div>
                                     <Input id="dropzone-file" type="file" className="hidden" {...field} multiple />
                                 </label>
-                            </div> 
-                        </FormControl>
-                        <FormDescription>
-                           Upload documents via file upload or connect with DigiLocker.
-                        </FormDescription>
+                            </div>
+                            <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg bg-muted/50 p-6">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/DigiLocker_logo.svg/1200px-DigiLocker_logo.svg.png" alt="DigiLocker Logo" className="h-12 mb-4" />
+                                <p className="text-center text-sm text-muted-foreground mb-4">
+                                    Verify your documents quickly and securely with DigiLocker.
+                                </p>
+                                <Button type="button" variant="outline">
+                                    <ShieldCheck className="mr-2" /> Connect with DigiLocker
+                                </Button>
+                            </div>
+                        </div>
                         <FormMessage />
                     </FormItem>
                     )}

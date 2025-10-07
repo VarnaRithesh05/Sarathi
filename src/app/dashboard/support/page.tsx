@@ -2,7 +2,7 @@ import { mockSupportServices } from '@/lib/data'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Handshake, MapPin, Phone } from 'lucide-react'
+import { Handshake, MapPin, Phone, Scale, ExternalLink } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 export default function SupportPage() {
@@ -18,23 +18,57 @@ export default function SupportPage() {
       </div>
 
       <div className="space-y-8">
-        <Card>
-            <CardHeader>
-                <CardTitle>Apply for NALSA Legal Aid</CardTitle>
-                <CardDescription>
-                    Directly apply for free legal services from the National Legal Services Authority.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                    Clicking the button below will take you to an integrated form to submit your application to NALSA for legal assistance. Ensure your profile information is up to date.
-                </p>
-                <Button>
-                    <Handshake className="mr-2 h-4 w-4" />
-                    Apply to NALSA
-                </Button>
-            </CardContent>
-        </Card>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Apply for NALSA Legal Aid</CardTitle>
+                    <CardDescription>
+                        Directly apply for free legal services from the National Legal Services Authority.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground mb-4">
+                        Clicking the button below will take you to an integrated form to submit your application to NALSA for legal assistance. Ensure your profile information is up to date.
+                    </p>
+                    <Button>
+                        <Handshake className="mr-2 h-4 w-4" />
+                        Apply to NALSA
+                    </Button>
+                </CardContent>
+            </Card>>
+            <Card className="bg-accent/10 border-accent/50">
+                <CardHeader>
+                    <CardTitle>eCourts Services</CardTitle>
+                    <CardDescription>
+                        Access case information directly from the eCourts portal for victims.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col space-y-3">
+                     <Button variant="outline" asChild className="justify-start">
+                        <a href="https://ecourts.gov.in/ecourts_home/" target="_blank" rel="noopener noreferrer">
+                            <Scale className="mr-2 h-4 w-4" />
+                            Check Case Status (CNR Number)
+                            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
+                        </a>
+                    </Button>
+                     <Button variant="outline" asChild className="justify-start">
+                        <a href="https://ecourts.gov.in/ecourts_home/" target="_blank" rel="noopener noreferrer">
+                           <Scale className="mr-2 h-4 w-4" />
+                            View Cause Lists
+                            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
+                        </a>
+                    </Button>
+                     <Button variant="outline" asChild className="justify-start">
+                        <a href="https://ecourts.gov.in/ecourts_home/" target="_blank" rel="noopener noreferrer">
+                           <Scale className="mr-2 h-4 w-4" />
+                           Access Court Orders
+                           <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
+                        </a>
+                    </Button>
+                </CardContent>
+            </Card>
+        </div>
+
 
         <Separator />
 
