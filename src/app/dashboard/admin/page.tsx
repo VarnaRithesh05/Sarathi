@@ -12,7 +12,6 @@ import {
   CircleDollarSign,
   FileText,
   MessageSquareWarning,
-  Users,
 } from 'lucide-react'
 import { CaseTable } from '../cases/components/case-table'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -37,7 +36,7 @@ export default function AdminDashboardOverviewPage() {
         </p>
       </div>
 
-       <Alert variant="destructive" className="bg-destructive/5">
+        <Alert variant="destructive" className="bg-destructive/5">
         <AlertOctagon className="h-4 w-4" />
         <AlertTitle className="font-headline">Urgent Alerts</AlertTitle>
         <AlertDescription>
@@ -94,7 +93,7 @@ export default function AdminDashboardOverviewPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {'\u20B9'}{new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(totalDisbursed)}
+              ₹{new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(totalDisbursed)}
             </div>
             <p className="text-xs text-muted-foreground">
               Total relief funds paid out
