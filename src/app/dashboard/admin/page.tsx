@@ -93,7 +93,7 @@ export default function AdminDashboardOverviewPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ₹{new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(totalDisbursed)}
+              INR {new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(totalDisbursed)}
             </div>
             <p className="text-xs text-muted-foreground">
               Total relief funds paid out
