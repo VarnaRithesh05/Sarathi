@@ -93,9 +93,9 @@ export const columns: ColumnDef<Case>[] = [
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue('amount'))
-      const formatted = new Intl.NumberFormat('en-IN').format(amount)
+      const formatted = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(amount)
 
-      return <div className="text-right font-medium">INR {formatted}</div>
+      return <div className="text-right font-medium">₹{formatted}</div>
     },
   },
   {
