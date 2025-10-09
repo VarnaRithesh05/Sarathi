@@ -6,26 +6,34 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         xmlns="http://www.w3.org/2000/svg" 
         className={className || "h-12 w-auto"}
         fill="hsl(var(--primary))"
+        stroke="hsl(var(--primary))"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
     >
         {/* Pillar and Base */}
-        <path d="M48 10 H52 V85 A2 2 0 0 1 50 87 A2 2 0 0 1 48 85 V10z" />
-        <path d="M40 87 H60 V91 H40z" />
+        <path d="M50 85 V 15" fill="none" />
+        <path d="M40 90 H 60" fill="none" />
         
         {/* Crossbeam */}
-        <path d="M10 10 H90 V14 H10z" />
+        <path d="M10 20 H 90" fill="none" />
         
         {/* Central Triangle */}
-        <path d="M50 14 L55 24 H45z" />
-
-        {/* Left Bowl and Hanger */}
-        <path d="M22 14 V25 H18 V14z" />
-        <path d="M20 25 L15 35 L25 35z" />
-        <path d="M20 35 L5 50 A20 20 0 0 0 35 50z" />
+        <path d="M50 20 L 45 28 H 55 Z" fill="hsl(var(--primary))" stroke="none" />
         
-        {/* Right Bowl and Hanger */}
-        <path d="M78 14 V25 H82 V14z" />
-        <path d="M80 25 L75 35 L85 35z" />
-        <path d="M80 35 L65 50 A20 20 0 0 1 95 50z" />
+        {/* Hangers */}
+        <path d="M20 20 V 30" fill="none" />
+        <path d="M80 20 V 30" fill="none" />
+        
+        {/* Left Bowl and Strings */}
+        <path d="M20 30 L 5 45" fill="none" />
+        <path d="M20 30 L 35 45" fill="none" />
+        <path d="M5 45 Q 20 60 35 45" fill="none" />
+
+        {/* Right Bowl and Strings */}
+        <path d="M80 30 L 65 45" fill="none" />
+        <path d="M80 30 L 95 45" fill="none" />
+        <path d="M65 45 Q 80 60 95 45" fill="none" />
     </svg>
 );
 
