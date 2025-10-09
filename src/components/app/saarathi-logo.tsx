@@ -7,33 +7,40 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         className={className || "h-12 w-auto"}
         fill="hsl(var(--primary))"
     >
-        {/* Central Pillar */}
-        <path d="M48 10 H52 V80 H48 z" />
-        {/* Base */}
-        <path d="M35 80 H65 V85 H35 z" />
-        {/* Crossbeam */}
-        <path d="M5 10 H95 V15 H5 z" />
-        {/* Hanger points on crossbeam */}
-        <path d="M18 15 V20 H22 V15 z" />
-        <path d="M78 15 V20 H82 V15 z" />
+        {/* Central Pillar and Base */}
+        <path d="M48 10 H52 V85 H48 z" />
+        <path d="M35 85 H65 V90 H35 z" />
 
+        {/* Crossbeam */}
+        <path d="M10 10 H90 V15 H10 z" />
+        
         {/* Left Bowl and Strings */}
-        <g>
+        <g stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none">
+            {/* Hanger */}
+            <path d="M25 15 V 25" />
+            {/* Bowl Connector */}
+            <path d="M10 40 H40" />
             {/* Strings */}
-            <path d="M20 20 L20 70 L15 70 L20 20 Z" />
-            <path d="M20 20 L40 70 L35 70 L20 20 Z" />
-            {/* Bowl */}
-            <path d="M5 75 A 20 20 0 0 0 45 75 H5 Z" />
+            <path d="M25 25 L 10 40" />
+            <path d="M25 25 L 40 40" />
         </g>
+        {/* Left Bowl */}
+        <path d="M5 40 A 20 15 0 0 0 45 40 Z" fill="hsl(var(--primary))" />
+
 
         {/* Right Bowl and Strings */}
-        <g>
+        <g stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none">
+            {/* Hanger */}
+            <path d="M75 15 V 25" />
+            {/* Bowl Connector */}
+            <path d="M60 40 H90" />
             {/* Strings */}
-            <path d="M80 20 L60 70 L65 70 L80 20 Z" />
-            <path d="M80 20 L85 70 L80 70 L80 20 Z" />
-            {/* Bowl */}
-            <path d="M55 75 A 20 20 0 0 1 95 75 H55 Z" />
+            <path d="M75 25 L 60 40" />
+            <path d="M75 25 L 90 40" />
         </g>
+        {/* Right Bowl */}
+        <path d="M55 40 A 20 15 0 0 1 95 40 Z" fill="hsl(var(--primary))" />
+
     </svg>
 );
 
