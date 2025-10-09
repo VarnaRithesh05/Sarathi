@@ -5,24 +5,31 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         viewBox="0 0 100 100" 
         xmlns="http://www.w3.org/2000/svg" 
         className={className || "h-12 w-auto"}
+        stroke="hsl(var(--primary))"
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
     >
-        {/* Shield/Arch background */}
-        <path 
-            d="M50 10 C 20 10, 10 25, 10 50 C 10 80, 25 90, 50 90 C 75 90, 90 80, 90 50 C 90 25, 80 10, 50 10 Z"
-            fill="hsl(var(--muted))"
-        />
-
-        {/* Left Shape (Blue) */}
-        <path 
-            d="M50 20 C 40 30, 30 45, 30 60 C 30 75, 40 80, 50 80 L 50 20 Z"
-            fill="#2A7CB5"
-        />
-
-        {/* Right Shape (Orange) */}
-        <path 
-            d="M50 20 C 60 30, 70 45, 70 60 C 70 75, 60 80, 50 80 L 50 20 Z"
-            fill="#F39432"
-        />
+        {/* Base */}
+        <line x1="30" y1="90" x2="70" y2="90" />
+        
+        {/* Pillar */}
+        <line x1="50" y1="88" x2="50" y2="20" />
+        
+        {/* Beam */}
+        <line x1="15" y1="20" x2="85" y2="20" />
+        
+        {/* Left Side */}
+        <line x1="25" y1="20" x2="25" y2="30" />
+        <path d="M10 50 C 10 35, 40 35, 40 50 Z" />
+        
+        {/* Right Side */}
+        <line x1="75" y1="20" x2="75" y2="30" />
+        <path d="M60 50 C 60 35, 90 35, 90 50 Z" />
+        
+        {/* Center pivot */}
+        <circle cx="50" cy="20" r="3" fill="hsl(var(--accent))" stroke="none" />
     </svg>
 );
 
