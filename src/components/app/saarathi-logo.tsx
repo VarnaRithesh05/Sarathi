@@ -12,27 +12,20 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         strokeLinejoin="round"
     >
         {/* Pillar */}
-        <path d="M 50 20 V 80" fill="none" />
-        <path d="M 45 80 H 55" fill="none" />
+        <path d="M 50 25 V 85" fill="none" />
+        {/* Base */}
+        <path d="M 35 85 H 65" fill="none" />
+        {/* Top circle */}
+        <circle cx="50" cy="20" r="5" fill="none" />
         
         {/* Crossbeam */}
-        <path d="M 25 35 H 75" fill="none" />
+        <path d="M 20 35 H 80" fill="none" />
         
-        {/* Left Hanger */}
-        <path d="M 30 35 V 45" fill="none" />
+        {/* Left Bowl (Triangle) */}
+        <path d="M 20 35 L 40 65 L 0 65 Z" stroke="none" />
         
-        {/* Right Hanger */}
-        <path d="M 70 35 V 45" fill="none" />
-        
-        {/* Left Bowl */}
-        <path d="M 20 55 H 40" fill="none" />
-        <path d="M 20 55 A 10 10 0 0 0 40 55" fill="none" />
-        <path d="M 30 45 V 55" fill="none" />
-
-        {/* Right Bowl */}
-        <path d="M 60 55 H 80" fill="none" />
-        <path d="M 60 55 A 10 10 0 0 0 80 55" fill="none" />
-        <path d="M 70 45 V 55" fill="none" />
+        {/* Right Bowl (Triangle) */}
+        <path d="M 80 35 L 100 65 L 60 65 Z" stroke="none" />
 
     </svg>
 );
