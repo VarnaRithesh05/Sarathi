@@ -7,18 +7,32 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         className={className || "h-12 w-auto"}
         fill="hsl(var(--primary))"
     >
-        <path d="M 48 15 L 48 85 L 52 85 L 52 15 Z" />
-        <path d="M 35 85 L 65 85 L 65 89 L 35 89 Z" />
-        <circle cx="50" cy="12" r="4" />
-        <path d="M 10 25 L 90 25 L 90 29 L 10 29 Z" />
-        <path d="M 47 23 L 53 23 L 53 31 L 47 31 Z" />
+        {/* Central Pillar */}
+        <path d="M48 10 H52 V80 H48 z" />
+        {/* Base */}
+        <path d="M35 80 H65 V85 H35 z" />
+        {/* Crossbeam */}
+        <path d="M5 10 H95 V15 H5 z" />
+        {/* Hanger points on crossbeam */}
+        <path d="M18 15 V20 H22 V15 z" />
+        <path d="M78 15 V20 H82 V15 z" />
+
+        {/* Left Bowl and Strings */}
         <g>
-            <path d="M 25 29 L 25 45" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <path d="M 10 55 C 10 45, 40 45, 40 55 L 10 55 Z" />
+            {/* Strings */}
+            <path d="M20 20 L20 70 L15 70 L20 20 Z" />
+            <path d="M20 20 L40 70 L35 70 L20 20 Z" />
+            {/* Bowl */}
+            <path d="M5 75 A 20 20 0 0 0 45 75 H5 Z" />
         </g>
+
+        {/* Right Bowl and Strings */}
         <g>
-            <path d="M 75 29 L 75 45" stroke="hsl(var(--primary))" strokeWidth="2" />
-            <path d="M 60 55 C 60 45, 90 45, 90 55 L 60 55 Z" />
+            {/* Strings */}
+            <path d="M80 20 L60 70 L65 70 L80 20 Z" />
+            <path d="M80 20 L85 70 L80 70 L80 20 Z" />
+            {/* Bowl */}
+            <path d="M55 75 A 20 20 0 0 1 95 75 H55 Z" />
         </g>
     </svg>
 );
