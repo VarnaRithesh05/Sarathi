@@ -11,32 +11,29 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         strokeLinecap="round"
         strokeLinejoin="round"
     >
-        {/* Stylized Central Pillar with base */}
-        <path d="M 50 25 V 80" fill="none" />
+        {/* Pillar */}
+        <path d="M 50 20 V 80" fill="none" />
         <path d="M 45 80 H 55" fill="none" />
-        <path d="M 42 85 H 58" fill="none" strokeWidth="2" />
         
-        {/* Shorter Crossbeam with flourishes */}
-        <path d="M 35 40 H 65" fill="none" />
-        <path d="M 32 37 L 38 43" fill="none" strokeWidth="2" />
-        <path d="M 38 37 L 32 43" fill="none" strokeWidth="2" />
-        <path d="M 62 37 L 68 43" fill="none" strokeWidth="2" />
-        <path d="M 68 37 L 62 43" fill="none" strokeWidth="2" />
+        {/* Crossbeam */}
+        <path d="M 25 35 H 75" fill="none" />
+        
+        {/* Left Hanger */}
+        <path d="M 30 35 V 45" fill="none" />
+        
+        {/* Right Hanger */}
+        <path d="M 70 35 V 45" fill="none" />
+        
+        {/* Left Bowl */}
+        <path d="M 20 55 H 40" fill="none" />
+        <path d="M 20 55 A 10 10 0 0 0 40 55" fill="none" />
+        <path d="M 30 45 V 55" fill="none" />
 
-        {/* Top Circle */}
-        <circle cx="50" cy="20" r="3" fill="hsl(var(--primary))" stroke="none" />
+        {/* Right Bowl */}
+        <path d="M 60 55 H 80" fill="none" />
+        <path d="M 60 55 A 10 10 0 0 0 80 55" fill="none" />
+        <path d="M 70 45 V 55" fill="none" />
 
-        {/* Curved Hangers */}
-        <path d="M 40 40 Q 30 55 35 60" fill="none" />
-        <path d="M 60 40 Q 70 55 65 60" fill="none" />
-        
-        {/* Bowl Separators */}
-        <path d="M 35 60 H 45" strokeWidth="2.5" fill="none" />
-        <path d="M 55 60 H 65" strokeWidth="2.5" fill="none" />
-        
-        {/* Smaller Filled Bowls */}
-        <path d="M 35 60 A 5 5 0 0 0 45 60 Z" />
-        <path d="M 55 60 A 5 5 0 0 0 65 60 Z" />
     </svg>
 );
 
