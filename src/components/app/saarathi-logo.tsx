@@ -12,35 +12,37 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         strokeLinejoin="round"
     >
         {/* Central Pillar */}
-        <path d="M 50 30 V 90" stroke="hsl(var(--primary))" />
+        <path d="M 50 30 V 90" />
         
         {/* Base */}
-        <path d="M 35 90 H 65" stroke="hsl(var(--primary))" />
+        <path d="M 35 90 H 65" />
         
         {/* Crossbeam */}
-        <path d="M 10 30 H 90" stroke="hsl(var(--primary))" />
+        <path d="M 10 30 H 90" />
         
         {/* Decorative Circle Top */}
         <circle cx="50" cy="22" r="4" fill="hsl(var(--primary))" stroke="none" />
         
         {/* Hangers */}
-        <path d="M 25 30 V 45" stroke="hsl(var(--primary))" />
-        <path d="M 75 30 V 45" stroke="hsl(var(--primary))" />
+        <path d="M 25 30 V 45" />
+        <path d="M 75 30 V 45" />
 
+        {/* Bowl Separators */}
+        <path d="M 10 60 H 40" strokeWidth="2" />
+        <path d="M 60 60 H 90" strokeWidth="2" />
+        
         {/* Bowls */}
         {/* Left Bowl */}
-        <path d="M 10 60 A 15 15 0 0 1 40 60" stroke="hsl(var(--primary))" />
-        <path d="M 10 60 H 40" stroke="hsl(var(--primary))" strokeWidth="2" />
+        <path d="M 10 60 A 15 15 0 0 1 40 60" />
 
         {/* Right Bowl */}
-        <path d="M 60 60 A 15 15 0 0 1 90 60" stroke="hsl(var(--primary))" />
-        <path d="M 60 60 H 90" stroke="hsl(var(--primary))" strokeWidth="2" />
+        <path d="M 60 60 A 15 15 0 0 1 90 60" />
         
         {/* Connecting Lines */}
-        <path d="M 25 45 L 10 60" stroke="hsl(var(--primary))" />
-        <path d="M 25 45 L 40 60" stroke="hsl(var(--primary))" />
-        <path d="M 75 45 L 60 60" stroke="hsl(var(--primary))" />
-        <path d="M 75 45 L 90 60" stroke="hsl(var(--primary))" />
+        <path d="M 25 45 L 10 60" />
+        <path d="M 25 45 L 40 60" />
+        <path d="M 75 45 L 60 60" />
+        <path d="M 75 45 L 90 60" />
     </svg>
 );
 
