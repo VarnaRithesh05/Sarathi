@@ -7,7 +7,7 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         className={className || "h-12 w-auto"}
     >
         <path
-            d="M50 10 V 90 M20 95 H 80 M10 20 H 90 M20 20 V 60 M80 20 V 60 M10 70 C 10 80, 30 80, 30 70 M70 70 C 70 80, 90 80, 90 70"
+            d="M50 10 V 30 M20 30 H 80 M50 30 V 90 M10 95 H 90 M20 30 V 70 M80 30 V 70 M10 70 A 10 10 0 0 0 30 70 M70 70 A 10 10 0 0 0 90 70"
             stroke="hsl(var(--primary))"
             strokeWidth="4"
             fill="none"
