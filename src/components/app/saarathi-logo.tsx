@@ -21,11 +21,15 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         {/* Crossbeam */}
         <path d="M 20 35 H 80" fill="none" />
         
-        {/* Left Bowl (Triangle) */}
-        <path d="M 20 35 L 40 65 L 0 65 Z" stroke="none" />
-        
-        {/* Right Bowl (Triangle) */}
-        <path d="M 80 35 L 100 65 L 60 65 Z" stroke="none" />
+        {/* Left Bowl & Strings */}
+        <path d="M 10 55 A 15 15 0 0 0 40 55" fill="none" />
+        <path d="M 20 35 L 10 55" fill="none" />
+        <path d="M 20 35 L 40 55" fill="none" />
+
+        {/* Right Bowl & Strings */}
+        <path d="M 60 55 A 15 15 0 0 0 90 55" fill="none" />
+        <path d="M 80 35 L 60 55" fill="none" />
+        <path d="M 80 35 L 90 55" fill="none" />
 
     </svg>
 );
