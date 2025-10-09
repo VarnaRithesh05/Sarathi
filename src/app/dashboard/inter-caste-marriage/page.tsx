@@ -323,15 +323,15 @@ export default function InterCasteMarriagePage() {
                         </CardHeader>
                         <CardContent>
                             <form onSubmit={handleStatusCheck} className="space-y-4">
-                                <FormItem>
-                                    <FormLabel htmlFor="applicationId">Application ID</FormLabel>
+                                <div className="space-y-2">
+                                    <label htmlFor="applicationId" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Application ID</label>
                                     <Input 
                                         id="applicationId" 
                                         placeholder="e.g., INCENTIVE-001"
                                         value={applicationId}
                                         onChange={(e) => setApplicationId(e.target.value)}
                                     />
-                                </FormItem>
+                                </div>
                                 <Button type="submit" className="w-full">Check Status</Button>
                             </form>
                         </CardContent>
@@ -366,5 +366,3 @@ export default function InterCasteMarriagePage() {
     </div>
   )
 }
-
-    
