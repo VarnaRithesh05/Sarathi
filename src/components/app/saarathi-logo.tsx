@@ -30,9 +30,13 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
 
         {/* Left Bowl */}
         <path d="M 10 65 A 15 15 0 0 0 40 65" fill="none" stroke="hsl(var(--primary))" />
+        {/* Horizontal line on top of left bowl */}
+        <path d="M 10 65 H 40" fill="none" stroke="hsl(var(--primary))" />
         
         {/* Right Bowl */}
         <path d="M 60 65 A 15 15 0 0 0 90 65" fill="none" stroke="hsl(var(--primary))" />
+        {/* Horizontal line on top of right bowl */}
+        <path d="M 60 65 H 90" fill="none" stroke="hsl(var(--primary))" />
 
         {/* Connectors from hanger to bowl */}
         <path d="M 25 50 L 10 65" stroke="hsl(var(--primary))" fill="none"/>
