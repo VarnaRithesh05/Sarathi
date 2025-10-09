@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import Image from 'next/image'
+import React, { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -16,10 +16,12 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { useToast } from '@/hooks/use-toast'
-import { Upload, ShieldCheck } from 'lucide-react'
+import { Upload, ShieldCheck, File as FileIcon, AlertTriangle, CheckCircle2, Loader, CircleDollarSign } from 'lucide-react'
 import DigilockerLogo from '@/components/app/digilocker-logo'
+import { Badge } from '@/components/ui/badge'
+import { mockInterCasteApplication } from '@/lib/data'
 
 const formSchema = z.object({
   applicantName1: z.string().min(2, {
@@ -31,11 +33,22 @@ const formSchema = z.object({
   marriageCertificateId: z.string().min(5, {
     message: 'Marriage certificate ID is required.',
   }),
-  documents: z.any().optional(),
+  documents: z.instanceof(FileList).optional(),
 })
+
+const statusDetails = {
+    Submitted: { icon: <Loader className="h-5 w-5 text-accent" />, color: "text-accent" },
+    'Documents Verified': { icon: <CheckCircle2 className="h-5 w-5 text-blue-500" />, color: "text-blue-500" },
+    Approved: { icon: <CheckCircle2 className="h-5 w-5 text-primary" />, color: "text-primary" },
+    Disbursed: { icon: <CircleDollarSign className="h-5 w-5 text-green-500" />, color: "text-green-500" },
+    Rejected: { icon: <AlertTriangle className="h-5 w-5 text-destructive" />, color: "text-destructive" },
+}
+
 
 export default function InterCasteMarriagePage() {
     const { toast } = useToast()
+    const [showForm, setShowForm] = useState(false);
+    const [uploadedFiles, setUploadedFiles] = useState<FileList | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,7 +67,94 @@ export default function InterCasteMarriagePage() {
       description: "Your incentive application has been successfully submitted.",
     })
     form.reset()
+    setUploadedFiles(null)
+    setShowForm(false)
   }
+  
+  if (!showForm) {
+    return (
+        <div className="space-y-6">
+            <div>
+                <h1 className="font-headline text-3xl font-bold tracking-tight">
+                Inter-Caste Marriage Incentive
+                </h1>
+                <p className="text-muted-foreground">
+                View the status of your application or apply for the scheme.
+                </p>
+            </div>
+            
+            <Card>
+                <CardHeader>
+                    <CardTitle>My Application Status</CardTitle>
+                    <CardDescription>
+                        Tracking ID: {mockInterCasteApplication.id}
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="flex items-center justify-between rounded-lg border bg-muted/30 p-4">
+                        <div className="flex items-center gap-3">
+                            <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-background`}>
+                                {statusDetails[mockInterCasteApplication.status].icon}
+                            </div>
+                            <div>
+                                <p className="text-sm text-muted-foreground">Status</p>
+                                <p className={`font-semibold ${statusDetails[mockInterCasteApplication.status].color}`}>{mockInterCasteApplication.status}</p>
+                            </div>
+                        </div>
+                         <div>
+                            <p className="text-sm text-muted-foreground text-right">Amount</p>
+                            <p className="font-semibold text-lg">₹{new Intl.NumberFormat('en-IN').format(mockInterCasteApplication.amount)}</p>
+                        </div>
+                    </div>
+
+                    {mockInterCasteApplication.missingDocuments && (
+                        <div className="rounded-md border border-destructive/50 bg-destructive/5 p-4">
+                            <div className="flex items-start gap-3">
+                                <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0" />
+                                <div>
+                                    <h4 className="font-semibold text-destructive">Action Required: Missing Documents</h4>
+                                    <p className="text-sm text-destructive/80 mt-1">Your application is on hold. Please upload the required documents to proceed: <span className="font-semibold">{mockInterCasteApplication.missingDocuments.join(', ')}</span>.</p>
+                                    <Button size="sm" variant="destructive" className="mt-3">Upload Documents</Button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div>
+                        <h4 className="font-semibold mb-3">Application Timeline</h4>
+                        <div className="space-y-4">
+                            {mockInterCasteApplication.timeline.map((event, index) => (
+                                <div key={index} className="flex gap-4">
+                                    <div className="flex flex-col items-center">
+                                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                                            <CheckCircle2 className="h-4 w-4" />
+                                        </div>
+                                        {index < mockInterCasteApplication.timeline.length - 1 && (
+                                            <div className="w-px flex-1 bg-border my-1"></div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <p className="font-medium">{event.title}</p>
+                                        <p className="text-sm text-muted-foreground">{event.date}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </CardContent>
+                <CardFooter className="border-t pt-6">
+                    <p className="text-sm text-muted-foreground">
+                        Don't have an application?{' '}
+                        <Button variant="link" className="p-0 h-auto" onClick={() => setShowForm(true)}>
+                            Apply for the incentive now.
+                        </Button>
+                    </p>
+                </CardFooter>
+            </Card>
+        </div>
+    )
+  }
+
 
   return (
     <div className="space-y-6">
@@ -128,19 +228,36 @@ export default function InterCasteMarriagePage() {
                            Upload documents via file upload or connect with DigiLocker for verification.
                         </FormDescription>
                         <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
-                            <div className="flex items-center justify-center w-full">
-                                <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted">
+                            <div className="space-y-3">
+                                <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted">
                                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                         <Upload className="w-10 h-10 mb-3 text-muted-foreground" />
                                         <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                         <p className="text-xs text-muted-foreground">Marriage Certificate, Caste Certificates, Aadhaar Cards</p>
                                     </div>
-                                    <Input id="dropzone-file" type="file" className="hidden" {...field} multiple value={undefined} />
+                                    <FormControl>
+                                        <Input 
+                                            id="dropzone-file" 
+                                            type="file" 
+                                            className="hidden"
+                                            multiple
+                                            onChange={(e) => {
+                                                field.onChange(e.target.files)
+                                                setUploadedFiles(e.target.files)
+                                            }}
+                                        />
+                                    </FormControl>
                                 </label>
+                                {uploadedFiles && Array.from(uploadedFiles).map((file, i) => (
+                                    <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground border rounded-md p-2">
+                                        <FileIcon className="h-4 w-4" />
+                                        <span className="flex-1 truncate">{file.name}</span>
+                                    </div>
+                                ))}
                             </div>
-                            <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg bg-muted/50 p-6">
-                                <DigilockerLogo className="h-20" />
-                                <p className="text-center text-sm text-muted-foreground my-4">
+                            <div className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg bg-muted/50 p-6">
+                                <DigilockerLogo className="h-16" />
+                                <p className="text-center text-sm text-muted-foreground my-3">
                                     Verify your documents quickly and securely with DigiLocker.
                                 </p>
                                 <Button 

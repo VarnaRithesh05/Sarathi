@@ -1,4 +1,4 @@
-import { Case, Notification, SupportService, Grievance } from '@/lib/types';
+import { Case, Notification, SupportService, Grievance, InterCasteMarriage } from '@/lib/types';
 import { subDays, format } from 'date-fns';
 
 const now = new Date(); // Using a fixed date to prevent hydration errors
@@ -130,3 +130,18 @@ export const mockGrievances: Grievance[] = [
         date: format(subDays(now, 20), 'yyyy-MM-dd'),
     }
 ]
+
+export const mockInterCasteApplication: InterCasteMarriage = {
+    id: 'INCENTIVE-001',
+    applicantName1: 'Rohan Kumar',
+    applicantName2: 'Priya Sharma',
+    status: 'Documents Verified',
+    date: format(subDays(now, 18), 'yyyy-MM-dd'),
+    amount: 250000,
+    missingDocuments: ['Caste Certificate (Partner 1)'],
+    timeline: [
+        { title: 'Application Submitted', date: format(subDays(now, 18), 'PP')},
+        { title: 'Initial Verification Complete', date: format(subDays(now, 15), 'PP')},
+        { title: 'Awaiting Document Verification', date: format(subDays(now, 10), 'PP')},
+    ]
+};

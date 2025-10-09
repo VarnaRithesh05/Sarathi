@@ -40,8 +40,9 @@ export type InterCasteMarriage = {
   id: string;
   applicantName1: string;
   applicantName2: string;
-  marriageCertificate: string;
-  status: 'Submitted' | 'Verified' | 'Approved' | 'Disbursed';
+  status: 'Submitted' | 'Documents Verified' | 'Approved' | 'Disbursed' | 'Rejected';
   date: string;
   amount: number;
+  missingDocuments?: string[];
+  timeline: { title: string; date: string; }[];
 };
