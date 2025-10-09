@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ShieldCheck, Users, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Users, ArrowRight, FileText, HeartHandshake, MessagesSquare } from 'lucide-react';
 import Link from 'next/link';
 import SaarathiLogo from '@/components/app/saarathi-logo';
 
@@ -34,59 +34,80 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col items-center justify-center p-4">
-        <div className="text-center mb-10">
-          <h2 className="font-headline text-4xl font-bold tracking-tighter">Welcome to Saarathi</h2>
-          <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-            Your guide to justice and rights. Please select your portal to begin.
-          </p>
-        </div>
-
-        <div className="w-full max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 gap-8 md:max-w-md md:mx-auto">
-                <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
-                    <CardHeader className="items-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 mb-2">
-                            <Users className="h-6 w-6 text-accent" />
-                        </div>
-                        <CardTitle className="font-headline text-xl">User Portal</CardTitle>
-                        <CardDescription>
-                            File an atrocity case, apply for an inter-caste marriage incentive, and track your status.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-1" />
-                    <CardContent>
-                        <Button asChild className="w-full">
-                            <Link href="/login">Login or Register</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="w-full py-20 md:py-32 bg-background">
+          <div className="container mx-auto text-center px-4">
+            <h2 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Your Guide to Justice and Rights</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-xl">
+              Saarathi is a dedicated platform to help victims of atrocities and support inter-caste marriages through government schemes.
+            </p>
+            <div className="mt-8 flex justify-center gap-4">
+               <Button asChild size="lg">
+                  <Link href="/login">Access User Portal</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                  <Link href="/login?tab=admin">Official's Login</Link>
+              </Button>
             </div>
+          </div>
+        </section>
 
-            <div className="mt-8">
-                 <Card className="bg-muted/50">
-                    <CardHeader className="flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background flex-shrink-0">
-                        <ShieldCheck className="h-6 w-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                        <CardTitle className="font-headline">Official's Portal</CardTitle>
-                        <CardDescription>
-                        For government officials to manage cases, sanction funds, and view policy insights.
-                        </CardDescription>
-                    </div>
-                    <Button asChild className="w-full sm:w-auto" variant="outline">
-                        <Link href="/login?tab=admin">
-                        Login to Admin Dashboard
-                        </Link>
-                    </Button>
-                    </CardHeader>
-                </Card>
+        {/* Features Section */}
+        <section className="w-full py-20 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="mb-12 text-center">
+              <h3 className="font-headline text-3xl font-bold tracking-tight">Key Services</h3>
+              <p className="mt-2 text-muted-foreground">Empowering citizens with access to essential support systems.</p>
             </div>
-        </div>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              <Card className="text-center transition-all hover:shadow-lg hover:-translate-y-1">
+                <CardHeader className="items-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
+                      <FileText className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl">Atrocity Case Registration</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    A streamlined process for victims to file cases under the SC/ST (Prevention of Atrocities) Act and track their progress towards justice.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center transition-all hover:shadow-lg hover:-translate-y-1">
+                <CardHeader className="items-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
+                      <HeartHandshake className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl">Marriage Incentive Scheme</CardTitle>
+                </CardHeader>
+                <CardContent>
+                   <p className="text-muted-foreground">
+                    Apply for financial incentives for inter-caste marriages, promoting social integration and equality.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center transition-all hover:shadow-lg hover:-translate-y-1">
+                <CardHeader className="items-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-2">
+                      <MessagesSquare className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl">Support & Grievance</CardTitle>
+                </CardHeader>
+                <CardContent>
+                   <p className="text-muted-foreground">
+                    Access a network of legal aid services, NGOs, and file grievances for prompt redressal of issues related to your case.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="w-full py-4">
+      <footer className="w-full py-6 border-t bg-background">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
             © {currentYear} Saarathi Platform. All Rights Reserved.
         </div>
