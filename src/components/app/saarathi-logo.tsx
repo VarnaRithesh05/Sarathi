@@ -7,40 +7,33 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         className={className || "h-12 w-auto"}
         stroke="hsl(var(--primary))"
         fill="hsl(var(--primary))"
-        strokeWidth="3.5"
+        strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
     >
-        {/* Decorative Central Pillar */}
+        {/* Central Pillar */}
         <path d="M 50 25 V 85" fill="none" />
-        <path d="M 45 90 H 55" fill="none" strokeWidth="4" />
-        <path d="M 47 85 H 53" fill="none" strokeWidth="4" />
         
         {/* Crossbeam */}
-        <path d="M 10 35 H 90" fill="none" />
+        <path d="M 15 40 H 85" fill="none" />
         
-        {/* Decorative Dots */}
-        <circle cx="50" cy="22" r="2.5" stroke="none" />
-        <circle cx="10" cy="35" r="2.5" stroke="none" />
-        <circle cx="90" cy-="35" r="2.5" stroke="none" />
-        
-        {/* Curved Hangers */}
-        <path d="M 25 35 Q 20 45, 25 55" fill="none" />
-        <path d="M 75 35 Q 80 45, 75 55" fill="none" />
+        {/* Concentric Circles on top */}
+        <circle cx="50" cy="20" r="5" fill="none" />
+        <circle cx="50" cy="20" r="2" />
 
+        {/* Straight Hangers */}
+        <path d="M 30 40 L 15 55" fill="none" />
+        <path d="M 30 40 L 45 55" fill="none" />
+        <path d="M 70 40 L 55 55" fill="none" />
+        <path d="M 70 40 L 85 55" fill="none" />
+        
         {/* Bowl Separators */}
-        <path d="M 10 65 H 40" strokeWidth="2.5" fill="none" />
-        <path d="M 60 65 H 90" strokeWidth="2.5" fill="none" />
+        <path d="M 10 55 H 50" strokeWidth="2.5" fill="none" />
+        <path d="M 50 55 H 90" strokeWidth="2.5" fill="none" />
         
         {/* Filled Bowls */}
-        <path d="M 10 65 A 15 15 0 0 0 40 65" />
-        <path d="M 60 65 A 15 15 0 0 0 90 65" />
-        
-        {/* Connecting Lines */}
-        <path d="M 25 55 L 10 65" fill="none" />
-        <path d="M 25 55 L 40 65" fill="none" />
-        <path d="M 75 55 L 60 65" fill="none" />
-        <path d="M 75 55 L 90 65" fill="none" />
+        <path d="M 10 55 A 20 20 0 0 0 50 55 Z" />
+        <path d="M 50 55 A 20 20 0 0 0 90 55 Z" />
     </svg>
 );
 
