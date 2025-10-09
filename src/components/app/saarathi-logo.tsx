@@ -12,10 +12,10 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         strokeLinejoin="round"
     >
         {/* Decorative Circle Top */}
-        <circle cx="50" cy="26" r="4" fill="hsl(var(--primary))" stroke="none" />
+        <circle cx="50" cy="30" r="2" fill="hsl(var(--primary))" stroke="none" />
         
         {/* Central Pillar (Pen Shape) */}
-        <path d="M 49 30 V 85 H 51 V 30 Z M 49 85 L 50 95 L 51 85 Z" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" strokeWidth="0"/>
+        <path d="M 49 30 V 85 L 50 95 L 51 85 V 30 Z" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" strokeWidth="0"/>
         
         {/* Crossbeam */}
         <path d="M 10 30 H 90" stroke="hsl(var(--primary))" fill="none"/>
@@ -26,19 +26,18 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         {/* Right Hanger */}
         <path d="M 75 30 V 50" stroke="hsl(var(--primary))" fill="none"/>
 
+        {/* Bowls with hanging point */}
         {/* Left Bowl */}
-        <path d="M 10 65 H 40" fill="none" stroke="hsl(var(--primary))" />
-        <path d="M 10 65 A 15 15 0 0 0 40 65" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" />
+        <path d="M 15 65 H 35" stroke="hsl(var(--primary))" fill="none" />
+        <path d="M 15 65 A 10 10 0 0 0 35 65" fill="hsl(var(--primary))" stroke="none" />
+        <path d="M 25 50 L 15 65" stroke="hsl(var(--primary))" fill="none"/>
+        <path d="M 25 50 L 35 65" stroke="hsl(var(--primary))" fill="none"/>
 
         {/* Right Bowl */}
-        <path d="M 60 65 H 90" fill="none" stroke="hsl(var(--primary))" />
-        <path d="M 60 65 A 15 15 0 0 0 90 65" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" />
-
-        {/* Connectors from hanger to bowl */}
-        <path d="M 25 50 L 10 65" stroke="hsl(var(--primary))" fill="none"/>
-        <path d="M 25 50 L 40 65" stroke="hsl(var(--primary))" fill="none"/>
-        <path d="M 75 50 L 60 65" stroke="hsl(var(--primary))" fill="none"/>
-        <path d="M 75 50 L 90 65" stroke="hsl(var(--primary))" fill="none"/>
+        <path d="M 65 65 H 85" stroke="hsl(var(--primary))" fill="none" />
+        <path d="M 65 65 A 10 10 0 0 0 85 65" fill="hsl(var(--primary))" stroke="none" />
+        <path d="M 75 50 L 65 65" stroke="hsl(var(--primary))" fill="none"/>
+        <path d="M 75 50 L 85 65" stroke="hsl(var(--primary))" fill="none"/>
     </svg>
 );
 
