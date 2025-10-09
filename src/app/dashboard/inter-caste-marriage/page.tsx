@@ -43,6 +43,7 @@ export default function InterCasteMarriagePage() {
       applicantName1: '',
       applicantName2: '',
       marriageCertificateId: '',
+      documents: null,
     },
   })
 

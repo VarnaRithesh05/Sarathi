@@ -49,6 +49,7 @@ export default function RegisterCasePage() {
       firNumber: '',
       district: '',
       incidentDetails: '',
+      documents: null,
     },
   })
 
