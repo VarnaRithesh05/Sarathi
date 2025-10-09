@@ -33,10 +33,10 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         
         {/* Bowls */}
         {/* Left Bowl */}
-        <path d="M 10 60 A 15 15 0 0 1 40 60" />
+        <path d="M 10 60 A 15 15 0 0 0 40 60" />
 
         {/* Right Bowl */}
-        <path d="M 60 60 A 15 15 0 0 1 90 60" />
+        <path d="M 60 60 A 15 15 0 0 0 90 60" />
         
         {/* Connecting Lines */}
         <path d="M 25 45 L 10 60" />
