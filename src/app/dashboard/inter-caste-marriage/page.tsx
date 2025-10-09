@@ -33,7 +33,7 @@ const formSchema = z.object({
   marriageCertificateId: z.string().min(5, {
     message: 'Marriage certificate ID is required.',
   }),
-  documents: z.instanceof(FileList).optional(),
+  documents: z.any().optional(),
 })
 
 const statusDetails = {
@@ -103,7 +103,7 @@ export default function InterCasteMarriagePage() {
                         </div>
                          <div>
                             <p className="text-sm text-muted-foreground text-right">Amount</p>
-                            <p className="font-semibold text-lg">₹{new Intl.NumberFormat('en-IN').format(mockInterCasteApplication.amount)}</p>
+                            <p className="font-semibold text-lg">INR {new Intl.NumberFormat('en-IN').format(mockInterCasteApplication.amount)}</p>
                         </div>
                     </div>
 
