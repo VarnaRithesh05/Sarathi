@@ -38,9 +38,12 @@ export default function Home() {
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 bg-background">
           <div className="container mx-auto text-center px-4">
-            <h2 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Your Guide to Justice and Rights</h2>
+            <h1 className="font-headline text-5xl font-bold tracking-tighter text-primary sm:text-6xl md:text-7xl">
+              Saarathi
+            </h1>
+            <p className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mt-2">Your Guide to Justice and Rights</p>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-xl">
-              Saarathi is a dedicated platform to help victims of atrocities and support inter-caste marriages through government schemes.
+              A dedicated platform to help victims of atrocities and support inter-caste marriages through government schemes.
             </p>
             <div className="mt-8 flex justify-center gap-4">
                <Button asChild size="lg">
