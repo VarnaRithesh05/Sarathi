@@ -18,7 +18,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { useToast } from '@/hooks/use-toast'
-import { Upload, ShieldCheck, File as FileIcon, AlertTriangle, CheckCircle2, Loader, CircleDollarSign } from 'lucide-react'
+import { Upload, ShieldCheck, File as FileIcon, AlertTriangle, CheckCircle2, Loader, CircleDollarSign, ArrowLeft } from 'lucide-react'
 import DigilockerLogo from '@/components/app/digilocker-logo'
 import { Badge } from '@/components/ui/badge'
 import { mockInterCasteApplication } from '@/lib/data'
@@ -44,10 +44,83 @@ const statusDetails = {
     Rejected: { icon: <AlertTriangle className="h-5 w-5 text-destructive" />, color: "text-destructive" },
 }
 
+type View = 'selection' | 'check-status' | 'show-status' | 'new-application';
 
-export default function InterCasteMarriagePage() {
+function ApplicationStatusView({ onBack }: { onBack: () => void }) {
+    return (
+        <Card>
+            <CardHeader>
+                <div className="flex items-center gap-4">
+                    <Button variant="ghost" size="icon" onClick={onBack}>
+                        <ArrowLeft className="h-4 w-4" />
+                    </Button>
+                    <div>
+                        <CardTitle>My Application Status</CardTitle>
+                        <CardDescription>
+                            Tracking ID: {mockInterCasteApplication.id}
+                        </CardDescription>
+                    </div>
+                </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <div className="flex items-center justify-between rounded-lg border bg-muted/30 p-4">
+                    <div className="flex items-center gap-3">
+                        <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-background`}>
+                            {statusDetails[mockInterCasteApplication.status].icon}
+                        </div>
+                        <div>
+                            <p className="text-sm text-muted-foreground">Status</p>
+                            <p className={`font-semibold ${statusDetails[mockInterCasteApplication.status].color}`}>{mockInterCasteApplication.status}</p>
+                        </div>
+                    </div>
+                     <div>
+                        <p className="text-sm text-muted-foreground text-right">Amount</p>
+                        <p className="font-semibold text-lg">INR {new Intl.NumberFormat('en-IN').format(mockInterCasteApplication.amount)}</p>
+                    </div>
+                </div>
+
+                {mockInterCasteApplication.missingDocuments && (
+                    <div className="rounded-md border border-destructive/50 bg-destructive/5 p-4">
+                        <div className="flex items-start gap-3">
+                            <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0" />
+                            <div>
+                                <h4 className="font-semibold text-destructive">Action Required: Missing Documents</h4>
+                                <p className="text-sm text-destructive/80 mt-1">Your application is on hold. Please upload the required documents to proceed: <span className="font-semibold">{mockInterCasteApplication.missingDocuments.join(', ')}</span>.</p>
+                                <Button size="sm" variant="destructive" className="mt-3">Upload Documents</Button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                
+                <div>
+                    <h4 className="font-semibold mb-3">Application Timeline</h4>
+                    <div className="space-y-4">
+                        {mockInterCasteApplication.timeline.map((event, index) => (
+                            <div key={index} className="flex gap-4">
+                                <div className="flex flex-col items-center">
+                                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                                        <CheckCircle2 className="h-4 w-4" />
+                                    </div>
+                                    {index < mockInterCasteApplication.timeline.length - 1 && (
+                                        <div className="w-px flex-1 bg-border my-1"></div>
+                                    )}
+                                </div>
+                                <div>
+                                    <p className="font-medium">{event.title}</p>
+                                    <p className="text-sm text-muted-foreground">{event.date}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+
+function NewApplicationForm({ onBack }: { onBack: () => void }) {
     const { toast } = useToast()
-    const [showForm, setShowForm] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState<FileList | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -62,115 +135,28 @@ export default function InterCasteMarriagePage() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
+    const newApplicationId = `INCENTIVE-${Math.floor(1000 + Math.random() * 9000)}`;
     toast({
       title: "Application Submitted",
-      description: "Your incentive application has been successfully submitted.",
+      description: `Your application has been successfully submitted. Your Application ID is ${newApplicationId}.`,
     })
     form.reset()
     setUploadedFiles(null)
-    setShowForm(false)
+    onBack();
   }
-  
-  if (!showForm) {
-    return (
-        <div className="space-y-6">
-            <div>
-                <h1 className="font-headline text-3xl font-bold tracking-tight">
-                Inter-Caste Marriage Incentive
-                </h1>
-                <p className="text-muted-foreground">
-                View the status of your application or apply for the scheme.
-                </p>
-            </div>
-            
-            <Card>
-                <CardHeader>
-                    <CardTitle>My Application Status</CardTitle>
-                    <CardDescription>
-                        Tracking ID: {mockInterCasteApplication.id}
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="flex items-center justify-between rounded-lg border bg-muted/30 p-4">
-                        <div className="flex items-center gap-3">
-                            <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-background`}>
-                                {statusDetails[mockInterCasteApplication.status].icon}
-                            </div>
-                            <div>
-                                <p className="text-sm text-muted-foreground">Status</p>
-                                <p className={`font-semibold ${statusDetails[mockInterCasteApplication.status].color}`}>{mockInterCasteApplication.status}</p>
-                            </div>
-                        </div>
-                         <div>
-                            <p className="text-sm text-muted-foreground text-right">Amount</p>
-                            <p className="font-semibold text-lg">INR {new Intl.NumberFormat('en-IN').format(mockInterCasteApplication.amount)}</p>
-                        </div>
-                    </div>
-
-                    {mockInterCasteApplication.missingDocuments && (
-                        <div className="rounded-md border border-destructive/50 bg-destructive/5 p-4">
-                            <div className="flex items-start gap-3">
-                                <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0" />
-                                <div>
-                                    <h4 className="font-semibold text-destructive">Action Required: Missing Documents</h4>
-                                    <p className="text-sm text-destructive/80 mt-1">Your application is on hold. Please upload the required documents to proceed: <span className="font-semibold">{mockInterCasteApplication.missingDocuments.join(', ')}</span>.</p>
-                                    <Button size="sm" variant="destructive" className="mt-3">Upload Documents</Button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    
-                    <div>
-                        <h4 className="font-semibold mb-3">Application Timeline</h4>
-                        <div className="space-y-4">
-                            {mockInterCasteApplication.timeline.map((event, index) => (
-                                <div key={index} className="flex gap-4">
-                                    <div className="flex flex-col items-center">
-                                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                                            <CheckCircle2 className="h-4 w-4" />
-                                        </div>
-                                        {index < mockInterCasteApplication.timeline.length - 1 && (
-                                            <div className="w-px flex-1 bg-border my-1"></div>
-                                        )}
-                                    </div>
-                                    <div>
-                                        <p className="font-medium">{event.title}</p>
-                                        <p className="text-sm text-muted-foreground">{event.date}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </CardContent>
-                <CardFooter className="border-t pt-6">
-                    <p className="text-sm text-muted-foreground">
-                        Don't have an application?{' '}
-                        <Button variant="link" className="p-0 h-auto" onClick={() => setShowForm(true)}>
-                            Apply for the incentive now.
-                        </Button>
-                    </p>
-                </CardFooter>
-            </Card>
-        </div>
-    )
-  }
-
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="font-headline text-3xl font-bold tracking-tight">
-          Inter-Caste Marriage Incentive
-        </h1>
-        <p className="text-muted-foreground">
-          Apply for the incentive scheme for inter-caste marriages.
-        </p>
-      </div>
-
-      <Card>
+    <Card>
         <CardHeader>
-            <CardTitle>Incentive Application Form</CardTitle>
-            <CardDescription>Fill out the details for both partners to apply.</CardDescription>
+            <div className="flex items-center gap-4">
+                <Button variant="ghost" size="icon" onClick={onBack}>
+                    <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <div>
+                    <CardTitle>Incentive Application Form</CardTitle>
+                    <CardDescription>Fill out the details for both partners to apply.</CardDescription>
+                </div>
+            </div>
         </CardHeader>
         <CardContent>
             <Form {...form}>
@@ -279,6 +265,106 @@ export default function InterCasteMarriagePage() {
             </Form>
         </CardContent>
       </Card>
+  );
+}
+
+
+export default function InterCasteMarriagePage() {
+    const { toast } = useToast();
+    const [view, setView] = useState<View>('selection');
+    const [applicationId, setApplicationId] = useState('');
+
+    const handleStatusCheck = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (applicationId) {
+            setView('show-status');
+        } else {
+            toast({
+                variant: 'destructive',
+                title: 'Invalid ID',
+                description: 'Please enter a valid application ID.',
+            });
+        }
+    };
+    
+    const renderContent = () => {
+        switch (view) {
+            case 'selection':
+                return (
+                    <Card className="w-full max-w-2xl mx-auto">
+                        <CardHeader>
+                            <CardTitle>Inter-Caste Marriage Incentive Portal</CardTitle>
+                            <CardDescription>What would you like to do today?</CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <Button variant="outline" className="w-full h-24 text-base" onClick={() => setView('new-application')}>
+                                Register New Application
+                            </Button>
+                            <Button className="w-full h-24 text-base" onClick={() => setView('check-status')}>
+                                Check Existing Application Status
+                            </Button>
+                        </CardContent>
+                    </Card>
+                );
+
+            case 'check-status':
+                return (
+                    <Card className="w-full max-w-md mx-auto">
+                         <CardHeader>
+                             <div className="flex items-center gap-4">
+                                <Button variant="ghost" size="icon" onClick={() => setView('selection')}>
+                                    <ArrowLeft className="h-4 w-4" />
+                                </Button>
+                                <div>
+                                    <CardTitle>Check Application Status</CardTitle>
+                                    <CardDescription>Enter your application ID to view its status.</CardDescription>
+                                </div>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleStatusCheck} className="space-y-4">
+                                <FormItem>
+                                    <FormLabel htmlFor="applicationId">Application ID</FormLabel>
+                                    <Input 
+                                        id="applicationId" 
+                                        placeholder="e.g., INCENTIVE-001"
+                                        value={applicationId}
+                                        onChange={(e) => setApplicationId(e.target.value)}
+                                    />
+                                </FormItem>
+                                <Button type="submit" className="w-full">Check Status</Button>
+                            </form>
+                        </CardContent>
+                    </Card>
+                );
+
+            case 'show-status':
+                return <ApplicationStatusView onBack={() => setView('selection')} />;
+
+            case 'new-application':
+                return <NewApplicationForm onBack={() => setView('selection')} />;
+            
+            default:
+                 return null;
+        }
+    };
+
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="font-headline text-3xl font-bold tracking-tight">
+          Inter-Caste Marriage Incentive
+        </h1>
+        <p className="text-muted-foreground">
+          Apply for the scheme or check the status of your existing application.
+        </p>
+      </div>
+      
+      {renderContent()}
+
     </div>
   )
 }
+
+    
