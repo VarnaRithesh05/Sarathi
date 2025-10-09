@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ShieldCheck, User, HeartHandshake, BookUser, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Users, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import SaarathiLogo from '@/components/app/saarathi-logo';
 
@@ -43,38 +43,21 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:max-w-md md:mx-auto">
                 <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
                     <CardHeader className="items-center">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 mb-2">
-                            <BookUser className="h-6 w-6 text-accent" />
+                            <Users className="h-6 w-6 text-accent" />
                         </div>
-                        <CardTitle className="font-headline text-xl">Victim of Atrocity</CardTitle>
+                        <CardTitle className="font-headline text-xl">User Portal</CardTitle>
                         <CardDescription>
-                            File a case, track its status, and access relief funds.
+                            File an atrocity case, apply for an inter-caste marriage incentive, and track your status.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-1" />
                     <CardContent>
                         <Button asChild className="w-full">
-                            <Link href="/login">Go to Victim Portal</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
-                <Card className="flex flex-col text-center transition-all hover:shadow-lg hover:-translate-y-1">
-                    <CardHeader className="items-center">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 mb-2">
-                            <HeartHandshake className="h-6 w-6 text-accent" />
-                        </div>
-                        <CardTitle className="font-headline text-xl">Inter-Caste Marriage</CardTitle>
-                        <CardDescription>
-                            Apply for the incentive scheme and monitor your application.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-1" />
-                    <CardContent>
-                        <Button asChild className="w-full">
-                            <Link href="/login">Apply for Incentive</Link>
+                            <Link href="/login">Login or Register</Link>
                         </Button>
                     </CardContent>
                 </Card>
