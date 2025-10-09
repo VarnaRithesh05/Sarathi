@@ -49,7 +49,7 @@ export default function RegisterCasePage() {
       firNumber: '',
       district: '',
       incidentDetails: '',
-      documents: null,
+      documents: undefined,
     },
   })
 
@@ -163,7 +163,7 @@ export default function RegisterCasePage() {
                                         <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                         <p className="text-xs text-muted-foreground">PDF, PNG, JPG (MAX. 5MB)</p>
                                     </div>
-                                    <Input id="dropzone-file" type="file" className="hidden" {...field} />
+                                    <Input id="dropzone-file" type="file" className="hidden" {...field} value={undefined} />
                                 </label>
                             </div>
                             <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg bg-muted/50 p-6">

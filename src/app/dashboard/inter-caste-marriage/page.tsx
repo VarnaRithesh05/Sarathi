@@ -43,7 +43,7 @@ export default function InterCasteMarriagePage() {
       applicantName1: '',
       applicantName2: '',
       marriageCertificateId: '',
-      documents: null,
+      documents: undefined,
     },
   })
 
@@ -135,7 +135,7 @@ export default function InterCasteMarriagePage() {
                                         <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                         <p className="text-xs text-muted-foreground">Marriage Certificate, Caste Certificates, Aadhaar Cards</p>
                                     </div>
-                                    <Input id="dropzone-file" type="file" className="hidden" {...field} multiple />
+                                    <Input id="dropzone-file" type="file" className="hidden" {...field} multiple value={undefined} />
                                 </label>
                             </div>
                             <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg bg-muted/50 p-6">
