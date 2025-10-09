@@ -6,30 +6,34 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         xmlns="http://www.w3.org/2000/svg" 
         className={className || "h-12 w-auto"}
         stroke="hsl(var(--primary))"
-        strokeWidth="4"
+        strokeWidth="5"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
     >
         {/* Base */}
-        <line x1="30" y1="90" x2="70" y2="90" />
+        <path d="M 25 90 L 75 90 L 70 95 L 30 95 Z" />
         
         {/* Pillar */}
-        <line x1="50" y1="88" x2="50" y2="20" />
+        <line x1="50" y1="90" x2="50" y2="15" />
+        
+        {/* Top decorative circle */}
+        <circle cx="50" cy="12" r="4" strokeWidth="3" />
         
         {/* Beam */}
-        <line x1="15" y1="20" x2="85" y2="20" />
-        
-        {/* Left Side */}
-        <line x1="25" y1="20" x2="25" y2="30" />
-        <path d="M10 50 C 10 35, 40 35, 40 50 Z" />
-        
-        {/* Right Side */}
-        <line x1="75" y1="20" x2="75" y2="30" />
-        <path d="M60 50 C 60 35, 90 35, 90 50 Z" />
+        <line x1="10" y1="35" x2="90" y2="35" />
         
         {/* Center pivot */}
-        <circle cx="50" cy="20" r="3" fill="hsl(var(--accent))" stroke="none" />
+        <line x1="50" y1="15" x2="50" y2="35" />
+
+        {/* Left Scale */}
+        <path d="M 15 35 L 15 45" />
+        <path d="M 5 65 C 5 50, 45 50, 45 65 Z" />
+        
+        {/* Right Scale */}
+        <path d="M 85 35 L 85 45" />
+        <path d="M 55 65 C 55 50, 95 50, 95 65 Z" />
+
     </svg>
 );
 
