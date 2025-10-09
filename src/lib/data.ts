@@ -132,7 +132,7 @@ export const mockGrievances: Grievance[] = [
 ]
 
 export const mockInterCasteApplication: InterCasteMarriage = {
-    id: 'INCENTIVE-001',
+    id: '482917',
     applicantName1: 'Rohan Kumar',
     applicantName2: 'Priya Sharma',
     status: 'Documents Verified',

@@ -22,6 +22,7 @@ import { Upload, ShieldCheck, File as FileIcon, AlertTriangle, CheckCircle2, Loa
 import DigilockerLogo from '@/components/app/digilocker-logo'
 import { Badge } from '@/components/ui/badge'
 import { mockInterCasteApplication } from '@/lib/data'
+import { Label } from '@/components/ui/label'
 
 const formSchema = z.object({
   applicantName1: z.string().min(2, {
@@ -135,7 +136,7 @@ function NewApplicationForm({ onBack }: { onBack: () => void }) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    const newApplicationId = `INCENTIVE-${Math.floor(1000 + Math.random() * 9000)}`;
+    const newApplicationId = Math.floor(100000 + Math.random() * 900000).toString();
     toast({
       title: "Application Submitted",
       description: `Your application has been successfully submitted. Your Application ID is ${newApplicationId}.`,
@@ -324,10 +325,11 @@ export default function InterCasteMarriagePage() {
                         <CardContent>
                             <form onSubmit={handleStatusCheck} className="space-y-4">
                                 <div className="space-y-2">
-                                    <label htmlFor="applicationId" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Application ID</label>
+                                    <Label htmlFor="applicationId">Application ID</Label>
                                     <Input 
                                         id="applicationId" 
-                                        placeholder="e.g., INCENTIVE-001"
+                                        name="applicationId" 
+                                        placeholder="e.g., 123456"
                                         value={applicationId}
                                         onChange={(e) => setApplicationId(e.target.value)}
                                     />
