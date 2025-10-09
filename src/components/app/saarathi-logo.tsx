@@ -12,7 +12,7 @@ const SaarathiLogo = ({ className }: { className?: string }) => (
         strokeLinejoin="round"
     >
         {/* Decorative Circle Top */}
-        <circle cx="50" cy="24" r="6" fill="hsl(var(--primary))" stroke="none" />
+        <circle cx="50" cy="26" r="4" fill="hsl(var(--primary))" stroke="none" />
         
         {/* Central Pillar (Pen Shape) */}
         <path d="M 46 30 V 80 H 54 V 30 H 46 Z M 46 80 L 50 95 L 54 80 H 46 Z" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" strokeWidth="0"/>
