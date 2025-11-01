@@ -7,8 +7,8 @@
 
 ## 🚀 Live Demo & Pitch
 
-* **Try the live prototype:** **[Link to Your Deployed App]**
-* **Watch our video pitch:** **[Link to YouTube/Vimeo Pitch Video]**
+
+* **Watch our video pitch:** **https://youtu.be/dM1jd4QEr_g**
 
 ---
 
